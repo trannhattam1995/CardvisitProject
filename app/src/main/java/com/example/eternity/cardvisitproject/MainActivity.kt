@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        my_cardvisit_update_bt.setOnClickListener({
+        update_bt.setOnClickListener({
             val intent = Intent(this, Update_CardvisitActivity::class.java)
             startActivity(intent)
         })

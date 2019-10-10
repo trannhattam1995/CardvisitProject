@@ -7,4 +7,62 @@
         android:layout_height="match_parent"
         tools:context=".Update_CardvisitActivity">
 
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_constraint"
+            android:layout_height="0dp" android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" tools:background="@android:color/darker_gray">
+        <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent" android:layout_height="wrap_content" android:text="名前"/>
+        <EditText
+                android:id="@+id/editText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:ems="10" android:text="123456798"/>
+        <EditText
+                android:id="@+id/editText3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPostalAddress"
+                android:ems="10" android:text="住所"/>
+        <EditText
+                android:id="@+id/editText4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10" tools:text="メール"/>
+        <EditText
+                android:id="@+id/editText7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:ems="10" android:text="SnS"/>
+        <TextView
+                android:id="@+id/company_name"
+                android:text="TextView"
+                android:layout_width="match_parent" android:layout_height="wrap_content" tools:text="会社名"/>
+        <EditText
+                android:id="@+id/company_adress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPostalAddress"
+                android:ems="10" android:text="会社住所"/>
+        <TextView
+                android:id="@+id/position"
+                android:text="TextView"
+                android:layout_width="match_parent" android:layout_height="wrap_content" tools:text="役職"/>
+        <EditText
+                android:id="@+id/fax"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10" android:text="12345679"/>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
