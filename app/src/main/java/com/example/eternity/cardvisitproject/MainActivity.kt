@@ -1,8 +1,8 @@
 package com.example.eternity.cardvisitproject
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -15,6 +15,18 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Update_CardvisitActivity::class.java)
             startActivity(intent)
         })
+
+        cardvisit_list_view_bt.setOnClickListener({
+            val intent = Intent(this, Cardvisit_ListActivity::class.java)
+            startActivity(intent)
+        })
+
+        cardvisit_change_bt.setOnClickListener({
+            val intent = Intent(this, Card_ChangeActivity::class.java)
+            startActivity(intent)
+        })
+
+
     }
 
 

@@ -19,6 +19,10 @@
         </activity>
         <activity android:name=".Update_CardvisitActivity">
         </activity>
+        <activity android:name=".Cardvisit_ListActivity">
+        </activity>
+        <activity android:name=".Card_ChangeActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -18,7 +18,7 @@
             app:layout_constraintHorizontal_bias="0.982" app:layout_constraintStart_toStartOf="@+id/imageView"
             app:srcCompat="@drawable/ic_launcher_foreground"/>
     <ImageButton
-            android:id="@+id/cardvisit_list_view"
+            android:id="@+id/cardvisit_list_view_bt"
             android:layout_width="100dp" android:layout_height="80dp"
             android:layout_weight="1" android:contentDescription="名刺確認"
             android:layout_marginTop="96dp"
