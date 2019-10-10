@@ -14,7 +14,7 @@ public class User {
     private int fax ;
     private  String company_url;
     private int iamge ;
-    
+
     public User(String name, int phone_number, String address, String e_mail, List<String> sns, String company_name, String company_adress, String position, int fax, String company_url, int iamge) {
         this.name = name;
         this.phone_number = phone_number;
