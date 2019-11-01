@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Information_Register">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            android:weightSum="8"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent">
+        <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPersonName"
+                android:ems="10" android:layout_weight="1" android:hint="名前を入力してください"/>
+        <EditText
+                android:id="@+id/company_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPersonName"
+                android:ems="10" android:layout_weight="1" android:hint="会社名を入力してください"/>
+        <EditText
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPersonName"
+                android:ems="10" android:layout_weight="1" android:hint="住所を入力してください"/>
+        <EditText
+                android:id="@+id/department"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPersonName"
+                android:ems="10" android:layout_weight="1" android:hint="役割を入力してください"/>
+        <EditText
+                android:id="@+id/sns"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textMultiLine"
+                android:ems="10" android:layout_weight="1" android:hint="snsを入力してください"/>
+        <EditText
+                android:id="@+id/phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textNoSuggestions|phone"
+                android:ems="10" android:layout_weight="1" android:hint="電話番号を入力してください"/>
+        <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textEmailAddress"
+                android:ems="10" android:layout_weight="1" android:hint="メールアドレスを入力してください"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:layout_weight="1">
+            <ImageButton
+                    android:id="@+id/back_bt"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_weight="1" app:srcCompat="@mipmap/ic_launcher"/>
+            <ImageButton
+                    android:id="@+id/register_bt"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_weight="1" app:srcCompat="@mipmap/ic_launcher"/>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
