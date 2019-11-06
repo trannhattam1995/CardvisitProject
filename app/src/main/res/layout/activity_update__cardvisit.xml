@@ -29,7 +29,22 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="4"></LinearLayout>
+                    android:layout_weight="4">
+
+                <ImageButton
+                        android:id="@+id/back_bt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@android:drawable/ic_media_previous" />
+
+                <ImageButton
+                        android:id="@+id/update_bt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@android:drawable/ic_input_get" />
+            </LinearLayout>
 
             <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
@@ -100,7 +115,32 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="4" />
+                    android:layout_weight="4" >
+
+                <Spinner
+                        android:id="@+id/Color_sp"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:entries="@array/list"
+                        android:spinnerMode="dropdown"
+                        android:background="@android:color/white"
+                        android:popupBackground="#D3D5D3"
+                        android:paddingRight="10dp" />
+
+                <ImageButton
+                        android:id="@+id/Fontsize_bt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@android:drawable/ic_menu_sort_alphabetically" />
+
+                <ImageButton
+                        android:id="@+id/Fontimage_bt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@android:drawable/ic_menu_manage" />
+            </LinearLayout>
 
         </LinearLayout>
 
