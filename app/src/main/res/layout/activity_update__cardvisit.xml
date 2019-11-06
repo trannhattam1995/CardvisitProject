@@ -7,4 +7,108 @@
         android:layout_height="match_parent"
         tools:context=".Update_CardvisitActivity">
 
+    <LinearLayout
+            android:id="@+id/Mainlayout"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.39">
+
+        <LinearLayout
+                android:id="@+id/Cardlayout"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"></LinearLayout>
+
+            <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                <ImageView
+                        android:id="@+id/Cardview"
+                        android:layout_width="542dp"
+                        android:layout_height="310dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#C41B1B"
+                        android:src="@drawable/f9a2f49b0c533eaaaed707e2812e26ed_t"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0"
+                        tools:srcCompat="@drawable/f9a2f49b0c533eaaaed707e2812e26ed_t" />
+
+                <ImageView
+                        android:id="@+id/Textview"
+                        android:layout_width="367dp"
+                        android:layout_height="198dp"
+                        android:src="@mipmap/ic_launcher"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/Cardview"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:srcCompat="@mipmap/ic_launcher" />
+
+                <TextView
+                        android:id="@+id/Username"
+                        android:text="麻生太郎"
+                        android:layout_width="195dp"
+                        android:layout_height="71dp"
+                        android:textSize="30sp"
+                        android:gravity="center_horizontal|center_vertical"
+                        app:layout_constraintBottom_toBottomOf="@+id/Textview"
+                        app:layout_constraintEnd_toEndOf="@+id/Textview"
+                        app:layout_constraintHorizontal_bias="0.506"
+                        app:layout_constraintStart_toStartOf="@+id/Textview"
+                        app:layout_constraintTop_toTopOf="@+id/Textview"
+                        app:layout_constraintVertical_bias="0.726" />
+
+                <TextView
+                        android:id="@+id/Companyname"
+                        android:text="麻生"
+                        android:layout_width="243dp"
+                        android:layout_height="82dp"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:textSize="36sp"
+                        app:layout_constraintBottom_toTopOf="@+id/Username"
+                        app:layout_constraintEnd_toEndOf="@+id/Textview"
+                        app:layout_constraintHorizontal_bias="0.516"
+                        app:layout_constraintStart_toStartOf="@+id/Textview"
+                        app:layout_constraintTop_toTopOf="@+id/Textview"
+                        app:layout_constraintVertical_bias="1.0" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4" />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/Infolayout"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3" />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

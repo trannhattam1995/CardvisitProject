@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
 
         update_bt.setOnClickListener({
-            val intent = Intent(this, Update_CardvisitActivity::class.java)
+            val intent = Intent(this, Information_Register::class.java)
             startActivity(intent)
         })
 
