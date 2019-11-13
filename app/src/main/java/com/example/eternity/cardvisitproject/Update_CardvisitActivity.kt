@@ -1,5 +1,6 @@
 package com.example.eternity.cardvisitproject
 
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
@@ -21,6 +22,7 @@ class Update_CardvisitActivity : AppCompatActivity() {
         Username.setOnTouchListener(moveLis)
         /*移動させる処理 ここまで */
 
+        /*スピナー　色変更処理*/
         Color_sp.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override
@@ -34,7 +36,7 @@ class Update_CardvisitActivity : AppCompatActivity() {
                     val item = spinner?.selectedItem as? String
                     item?.let {
                         if (it.isNotEmpty()){
-                            //Companyname.textColors = it
+                            Companyname.setTextColor(Color.RED);
                         }
                     }
                 }
@@ -42,8 +44,10 @@ class Update_CardvisitActivity : AppCompatActivity() {
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
 
+        /*テキストサイズ変更処理*/
         Fontsize_bt.setOnClickListener({
             Companyname.setTextSize(80f)
+            Companyname.setTextColor(Color.BLACK);
         })
 
         /*Companyname.setTextIsSelectable(boolean selectable){
