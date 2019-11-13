@@ -6,10 +6,15 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Spinner
+import android.widget.TextView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_information__register.*
 import kotlinx.android.synthetic.main.activity_update__cardvisit.*
+import org.w3c.dom.Text
 
 class Update_CardvisitActivity : AppCompatActivity() {
+
+    var selected : View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +25,7 @@ class Update_CardvisitActivity : AppCompatActivity() {
         Companyname.setOnTouchListener(moveLis)
         Username.setOnTouchListener(moveLis)
         /*移動させる処理 ここまで */
+
 
         Color_sp.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
@@ -43,7 +49,10 @@ class Update_CardvisitActivity : AppCompatActivity() {
             }
 
         Fontsize_bt.setOnClickListener({
-            Companyname.setTextSize(80f)
+            if( selected != null){
+                var selected_textView = selected as TextView
+                selected_textView.setTextSize(80f)
+            }
         })
 
         /*Companyname.setTextIsSelectable(boolean selectable){
@@ -66,6 +75,9 @@ class Update_CardvisitActivity : AppCompatActivity() {
             val y = event.rawY.toInt()
 
             when (event.action) {
+                MotionEvent.ACTION_DOWN ->{
+                    selected = view
+                }
                 MotionEvent.ACTION_MOVE -> {
                     // 今回イベントでのView移動先の位置
                     val left = view.getLeft() + (x - oldx)
