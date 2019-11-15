@@ -4,12 +4,10 @@ import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.View
-import android.widget.AdapterView
-import android.widget.Spinner
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import kotlinx.android.synthetic.main.activity_information__register.*
 import kotlinx.android.synthetic.main.activity_update__cardvisit.*
 import org.w3c.dom.Text
@@ -29,7 +27,6 @@ class Update_CardvisitActivity : AppCompatActivity() {
         Username.setOnTouchListener(moveLis)
         /*移動させる処理 ここまで */
 
-
         Color_sp.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override
@@ -43,7 +40,13 @@ class Update_CardvisitActivity : AppCompatActivity() {
                     val item = spinner?.selectedItem as? String
                     item?.let {
                         if (it.isNotEmpty()){
-                            //Companyname.textColors = it
+                            var selected_textView = selected as TextView
+                            when(it) {
+                                "BLUE" -> selected_textView.setTextColor(Color.BLUE)
+                                "RED" -> selected_textView.setTextColor(Color.RED)
+                                "GREEN" -> selected_textView.setTextColor(Color.GREEN)
+                                "YELLOW" -> selected_textView.setTextColor(Color.YELLOW)
+                            }
                         }
                     }
                 }
@@ -52,15 +55,34 @@ class Update_CardvisitActivity : AppCompatActivity() {
             }
 
         Fontsize_bt.setOnClickListener({
-            if( selected != null){
-                var selected_textView = selected as TextView
-                selected_textView.setTextSize(80f)
-            }
         })
 
-        /*Companyname.setTextIsSelectable(boolean selectable){
-            mTextIsSelectable = true;
+        /*PreferenceManager.getDefaultSharedPreferences(this).apply {
+            val fontsizeVal = getInt("FONTSIZE_SB", 30)
+            if( selected != null) {
+                var selected_textView = selected as TextView
+                selected_textView.setTextSize()
+            }
         }*/
+
+        /*シークバーの処理*/
+        Fontsize_sb.setOnSeekBarChangeListener(
+            object : SeekBar.OnSeekBarChangeListener{
+
+                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                    if( selected != null) {
+                        var selected_textView = selected as TextView
+                        selected_textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,progress.toFloat())
+                    }
+                }
+
+                override fun onStartTrackingTouch(p0: SeekBar?) {
+                }
+
+                override fun onStopTrackingTouch(p0: SeekBar?) {
+                }
+            }
+        )
 
 
     }
