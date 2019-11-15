@@ -84,7 +84,7 @@
                         android:id="@+id/Username"
                         android:text="麻生太郎"
                         android:layout_width="195dp"
-                        android:layout_height="71dp"
+                        android:layout_height="75dp"
                         android:textSize="30sp"
                         android:gravity="center_horizontal|center_vertical"
                         app:layout_constraintBottom_toBottomOf="@+id/Textview"
@@ -92,7 +92,7 @@
                         app:layout_constraintHorizontal_bias="0.506"
                         app:layout_constraintStart_toStartOf="@+id/Textview"
                         app:layout_constraintTop_toTopOf="@+id/Textview"
-                        app:layout_constraintVertical_bias="0.726" />
+                        app:layout_constraintVertical_bias="0.726"/>
 
                 <TextView
                         android:id="@+id/Companyname"
@@ -101,12 +101,14 @@
                         android:layout_height="82dp"
                         android:gravity="center_horizontal|center_vertical"
                         android:textSize="36sp"
+                        android:shadowColor="@android:color/holo_red_dark"
+                        android:padding="0px"
                         app:layout_constraintBottom_toTopOf="@+id/Username"
                         app:layout_constraintEnd_toEndOf="@+id/Textview"
                         app:layout_constraintHorizontal_bias="0.516"
                         app:layout_constraintStart_toStartOf="@+id/Textview"
                         app:layout_constraintTop_toTopOf="@+id/Textview"
-                        app:layout_constraintVertical_bias="1.0" />
+                        app:layout_constraintVertical_bias="1.0" tools:background="@drawable/myrec"/>
 
             </android.support.constraint.ConstraintLayout>
 
