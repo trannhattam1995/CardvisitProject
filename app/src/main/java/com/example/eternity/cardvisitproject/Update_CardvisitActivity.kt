@@ -3,14 +3,18 @@ package com.example.eternity.cardvisitproject
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.View
-import android.widget.AdapterView
-import android.widget.Spinner
+import android.widget.*
 import kotlinx.android.synthetic.main.activity_information__register.*
 import kotlinx.android.synthetic.main.activity_update__cardvisit.*
+import org.w3c.dom.Text
 
 class Update_CardvisitActivity : AppCompatActivity() {
+
+    var selected : View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +26,7 @@ class Update_CardvisitActivity : AppCompatActivity() {
         Username.setOnTouchListener(moveLis)
         /*移動させる処理 ここまで */
 
-        /*スピナー　色変更処理*/
+
         Color_sp.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override
@@ -36,7 +40,13 @@ class Update_CardvisitActivity : AppCompatActivity() {
                     val item = spinner?.selectedItem as? String
                     item?.let {
                         if (it.isNotEmpty()){
-                            Companyname.setTextColor(Color.RED);
+                            var selected_textView = selected as TextView
+                            when(it) {
+                                "BLUE" -> selected_textView.setTextColor(Color.BLUE)
+                                "RED" -> selected_textView.setTextColor(Color.RED)
+                                "GREEN" -> selected_textView.setTextColor(Color.GREEN)
+                                "YELLOW" -> selected_textView.setTextColor(Color.YELLOW)
+                            }
                         }
                     }
                 }
@@ -46,13 +56,40 @@ class Update_CardvisitActivity : AppCompatActivity() {
 
         /*テキストサイズ変更処理*/
         Fontsize_bt.setOnClickListener({
-            Companyname.setTextSize(80f)
-            Companyname.setTextColor(Color.BLACK);
+            if( selected != null){
+                var selected_textView = selected as TextView
+                selected_textView.setTextSize(80f)
+            }
         })
 
-        /*Companyname.setTextIsSelectable(boolean selectable){
-            mTextIsSelectable = true;
+        /*PreferenceManager.getDefaultSharedPreferences(this).apply {
+            val fontsizeVal = getInt("FONTSIZE_SB", 30)
+            if( selected != null) {
+                var selected_textView = selected as TextView
+                selected_textView.setTextSize()
+            }
         }*/
+
+        /*シークバーの処理*/
+        Fontsize_sb.setOnSeekBarChangeListener(
+            object : SeekBar.OnSeekBarChangeListener{
+
+                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+//                    if( selected != null) {
+//                        var selected_textView = selected as TextView
+//                        selected_textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,progress.toFloat())
+//                    }
+                }
+
+                override fun onStartTrackingTouch(p0: SeekBar?) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+                override fun onStopTrackingTouch(p0: SeekBar?) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+            }
+        )
 
 
     }
@@ -70,6 +107,9 @@ class Update_CardvisitActivity : AppCompatActivity() {
             val y = event.rawY.toInt()
 
             when (event.action) {
+                MotionEvent.ACTION_DOWN ->{
+                    selected = view
+                }
                 MotionEvent.ACTION_MOVE -> {
                     // 今回イベントでのView移動先の位置
                     val left = view.getLeft() + (x - oldx)

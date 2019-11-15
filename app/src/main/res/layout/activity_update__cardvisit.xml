@@ -139,6 +139,15 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@android:drawable/ic_menu_manage" />
+
+                <SeekBar
+                        android:id="@+id/Fontsize_sb"
+                        style="@style/Widget.AppCompat.SeekBar.Discrete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:max="80"
+                        android:progress="30"
+                        android:layout_weight="1" />
             </LinearLayout>
 
         </LinearLayout>
