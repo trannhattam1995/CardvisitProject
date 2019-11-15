@@ -57,14 +57,6 @@ class Update_CardvisitActivity : AppCompatActivity() {
         Fontsize_bt.setOnClickListener({
         })
 
-        /*PreferenceManager.getDefaultSharedPreferences(this).apply {
-            val fontsizeVal = getInt("FONTSIZE_SB", 30)
-            if( selected != null) {
-                var selected_textView = selected as TextView
-                selected_textView.setTextSize()
-            }
-        }*/
-
         /*シークバーの処理*/
         Fontsize_sb.setOnSeekBarChangeListener(
             object : SeekBar.OnSeekBarChangeListener{
