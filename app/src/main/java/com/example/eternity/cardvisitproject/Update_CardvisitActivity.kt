@@ -83,7 +83,7 @@ class Update_CardvisitActivity : AppCompatActivity() {
                     if( preSelected != null){
                         preSelected?.setBackgroundColor(Color.TRANSPARENT)
                     }
-                    selected?.setBackgroundColor(Color.argb(31, 255, 0, 0))
+                    //selected?.setBackgroundColor(Color.argb(31, 255, 0, 0))
                     selected?.setBackgroundResource(R.drawable.myrec)
 
                 }
