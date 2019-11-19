@@ -30,10 +30,12 @@ class Update_CardvisitActivity : AppCompatActivity() {
         setContentView(R.layout.activity_update__cardvisit)
 
 
-        /*val Companyname = (Companyname)
-        val customFont = Typeface.createFromAsset(assets, "MPLUSRounded1c-Thin.ttf")
-        Companyname.setTypeface(customFont)*/
 
+
+
+        Fontsize_bt.setOnClickListener(){
+            Fontsize_bt.setVisibility(View.GONE)
+        }
 
 
         /*移動させる処理*/
@@ -84,9 +86,20 @@ class Update_CardvisitActivity : AppCompatActivity() {
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
 
+
         Fontsize_bt.setOnClickListener({
 
         })
+
+        /*フォント変更*/
+        Fontimage_bt.setOnClickListener({
+            if( selected != null) {
+                var selected_textView = selected as TextView
+                val customFont = Typeface.createFromAsset(assets, "Indie_Flower/IndieFlower-Regular.ttf")
+                selected_textView.setTypeface(customFont)
+            }
+        })
+
 
         /*シークバーの処理*/
         Fontsize_sb.setOnSeekBarChangeListener(
