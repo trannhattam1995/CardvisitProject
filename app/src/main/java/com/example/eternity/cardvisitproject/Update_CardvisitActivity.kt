@@ -22,10 +22,8 @@ class Update_CardvisitActivity : AppCompatActivity() {
         setContentView(R.layout.activity_update__cardvisit)
 
         /*移動させる処理*/
-        val moveLis : DragViewListener = DragViewListener(Textview)
-        Companyname.setOnTouchListener(moveLis)
-        Username.setOnTouchListener(moveLis)
-        /*移動させる処理 ここまで */
+        val moveLis : DragViewListener = DragViewListener(TextView(this))
+
 
         Color_sp.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
@@ -77,6 +75,13 @@ class Update_CardvisitActivity : AppCompatActivity() {
         )
 
 
+        name_bt.setOnClickListener({
+            var newText = TextView(this)
+            newText.setTextSize(60f)
+            newText.setText("test")
+            CardLayout.addView((newText))
+            newText.setOnTouchListener(moveLis)
+        })
     }
 
 
