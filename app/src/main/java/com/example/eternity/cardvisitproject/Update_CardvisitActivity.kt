@@ -11,6 +11,14 @@ import android.widget.*
 import kotlinx.android.synthetic.main.activity_information__register.*
 import kotlinx.android.synthetic.main.activity_update__cardvisit.*
 import org.w3c.dom.Text
+import android.graphics.Typeface
+import android.widget.TextView
+import android.support.v4.app.SupportActivity
+import android.support.v4.app.SupportActivity.ExtraData
+import android.support.v4.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class Update_CardvisitActivity : AppCompatActivity() {
 
@@ -21,10 +29,17 @@ class Update_CardvisitActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update__cardvisit)
 
+
+        /*val Companyname = (Companyname)
+        val customFont = Typeface.createFromAsset(assets, "MPLUSRounded1c-Thin.ttf")
+        Companyname.setTypeface(customFont)*/
+
+
+
         /*移動させる処理*/
         val moveLis : DragViewListener = DragViewListener(TextView(this))
 
-
+        /*カラースピナー*/
         Color_sp.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override
@@ -52,7 +67,25 @@ class Update_CardvisitActivity : AppCompatActivity() {
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
 
+        /*テンプレートスピナー*/
+        Temp_sp.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override
+                fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+
+                }
+
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+            }
+
         Fontsize_bt.setOnClickListener({
+
         })
 
         /*シークバーの処理*/
