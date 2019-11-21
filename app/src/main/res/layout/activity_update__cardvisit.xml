@@ -18,7 +18,7 @@
             app:layout_constraintVertical_bias="0.39">
 
         <LinearLayout
-                android:id="@+id/Cardlayout"
+                android:id="@+id/CreateLayout"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -35,86 +35,39 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@android:drawable/ic_media_previous" />
+                        app:srcCompat="@android:drawable/ic_media_previous"/>
 
                 <ImageButton
                         android:id="@+id/update_bt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@android:drawable/ic_input_get" />
+                        app:srcCompat="@android:drawable/ic_input_get"/>
             </LinearLayout>
 
             <android.support.constraint.ConstraintLayout
+                    android:id="@+id/CardLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_height="match_parent" android:layout_weight="1">
 
-                <ImageView
-                        android:id="@+id/Cardview"
-                        android:layout_width="542dp"
-                        android:layout_height="310dp"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginRight="4dp"
-                        android:layout_marginBottom="10dp"
-                        android:src="@drawable/ic_launcher_background"
-                        android:background="#FAF8F8"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0"
-                        tools:srcCompat="@drawable/ic_launcher_background" />
-
-                <ImageView
-                        android:id="@+id/Textview"
-                        android:layout_width="367dp"
-                        android:layout_height="198dp"
-                        android:src="@mipmap/ic_launcher"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/Cardview"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:srcCompat="@mipmap/ic_launcher" />
-
-                <TextView
-                        android:id="@+id/Username"
-                        android:text="麻生太郎"
-                        android:layout_width="195dp"
-                        android:layout_height="71dp"
-                        android:textSize="30sp"
-                        android:gravity="center_horizontal|center_vertical"
-                        app:layout_constraintBottom_toBottomOf="@+id/Textview"
-                        app:layout_constraintEnd_toEndOf="@+id/Textview"
-                        app:layout_constraintHorizontal_bias="0.506"
-                        app:layout_constraintStart_toStartOf="@+id/Textview"
-                        app:layout_constraintTop_toTopOf="@+id/Textview"
-                        app:layout_constraintVertical_bias="0.726" />
-
-                <TextView
-                        android:id="@+id/Companyname"
-                        android:text="麻生"
-                        android:layout_width="243dp"
-                        android:layout_height="82dp"
-                        android:gravity="center_horizontal|center_vertical"
-                        android:textSize="36sp"
-                        app:layout_constraintBottom_toTopOf="@+id/Username"
-                        app:layout_constraintEnd_toEndOf="@+id/Textview"
-                        app:layout_constraintHorizontal_bias="0.516"
-                        app:layout_constraintStart_toStartOf="@+id/Textview"
-                        app:layout_constraintTop_toTopOf="@+id/Textview"
-                        app:layout_constraintVertical_bias="1.0" />
-
+                <fragment
+                        android:id="@+id/fragment3"
+                        android:name="com.example.eternity.cardvisitproject.Temple_Normal"
+                        android:layout_width="0dp" android:layout_height="0dp"
+                        android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp" android:layout_marginTop="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+                <com.example.eternity.cardvisitproject.DrawView android:layout_width="match_parent"
+                                                                android:layout_height="match_parent"/>
             </android.support.constraint.ConstraintLayout>
 
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="4" >
+                    android:layout_weight="4">
 
                 <Spinner
                         android:id="@+id/Color_sp"
@@ -124,21 +77,36 @@
                         android:spinnerMode="dropdown"
                         android:background="@android:color/white"
                         android:popupBackground="#D3D5D3"
-                        android:paddingRight="10dp" />
+                        android:paddingRight="10dp"/>
+
+                <Spinner
+                        android:id="@+id/Temp_sp"
+                        android:layout_width="9dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:spinnerMode="dropdown" />
 
                 <ImageButton
                         android:id="@+id/Fontsize_bt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@android:drawable/ic_menu_sort_alphabetically" />
+                        app:srcCompat="@android:drawable/ic_menu_sort_alphabetically"/>
 
                 <ImageButton
                         android:id="@+id/Fontimage_bt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@android:drawable/ic_menu_manage" />
+                        app:srcCompat="@android:drawable/ic_menu_manage"/>
+
+                <SeekBar
+                        android:id="@+id/Fontsize_sb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:max="80"
+                        android:progress="30" />
             </LinearLayout>
 
         </LinearLayout>
@@ -148,6 +116,43 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="3" />
+                android:layout_weight="3" >
+            <Button
+                    android:id="@+id/companyName_bt"
+                    android:text="会社名"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"/>
+            <Button
+                    android:id="@+id/name_bt"
+                    android:text="名前"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"/>
+            <Button
+                    android:id="@+id/phone_bt"
+                    android:text="電話番号"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"/>
+            <Button
+                    android:id="@+id/adress_bt"
+                    android:text="住所"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"/>
+            <Button
+                    android:id="@+id/sns_bt"
+                    android:text="SNS"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"/>
+            <Button
+                    android:id="@+id/position_bt"
+                    android:text="役割"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"/>
+            <Button
+                    android:id="@+id/image_bt"
+                    android:text="写真"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"/>
+            <Button
+                    android:id="@+id/companyUrl_bt"
+                    android:text="会社URL"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"/>
+            <Button
+                    android:id="@+id/fax_bt"
+                    android:text="Fax"
+                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"/>
+        </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
