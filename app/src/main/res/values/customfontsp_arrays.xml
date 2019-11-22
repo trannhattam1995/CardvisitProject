@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="customfont_arr">
+        <item></item>
+        <item>Rounded Mplus 1c Black</item>
+        <item>Rounded Mplus 1c Thin</item>
+        <item>Indie Flower</item>
+        <item>Big Shoulders Text SemiBold</item>
+    </string-array>
+</resources>

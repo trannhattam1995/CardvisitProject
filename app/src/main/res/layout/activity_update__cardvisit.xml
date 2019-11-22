@@ -59,8 +59,14 @@
                         android:layout_marginBottom="8dp" android:layout_marginTop="8dp"
                         app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
-                <com.example.eternity.cardvisitproject.DrawView android:layout_width="match_parent"
-                                                                android:layout_height="match_parent"/>
+
+                <com.example.eternity.cardvisitproject.DrawView
+                        android:id="@+id/drawView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:layout_editor_absoluteX="51dp"
+                        tools:layout_editor_absoluteY="-30dp" />
+
             </android.support.constraint.ConstraintLayout>
 
             <LinearLayout
@@ -73,11 +79,11 @@
                         android:id="@+id/Color_sp"
                         android:layout_width="51dp"
                         android:layout_height="match_parent"
-                        android:entries="@array/txt_info_arr"
+                        android:entries="@array/color_arr"
                         android:spinnerMode="dropdown"
                         android:background="@android:color/white"
                         android:popupBackground="#D3D5D3"
-                        android:paddingRight="10dp"/>
+                        android:paddingRight="10dp" />
 
                 <Spinner
                         android:id="@+id/Temp_sp"
@@ -100,6 +106,17 @@
                         android:layout_weight="1"
                         app:srcCompat="@android:drawable/ic_menu_manage"/>
 
+                <Spinner
+                        android:id="@+id/Customfont_sp"
+                        android:layout_width="51dp"
+                        android:layout_height="match_parent"
+                        android:entries="@array/customfont_arr"
+                        android:spinnerMode="dialog"
+                        android:background="@android:color/white"
+                        android:popupBackground="#D3D5D3"
+                        android:paddingRight="10dp"
+                        android:layout_weight="1" />
+
                 <SeekBar
                         android:id="@+id/Fontsize_sb"
                         android:layout_width="wrap_content"
@@ -107,52 +124,15 @@
                         android:layout_weight="1"
                         android:max="80"
                         android:progress="30" />
+
+                <Spinner
+                        android:id="@+id/Profile_sp"
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
             </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-                android:id="@+id/Infolayout"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="3" >
-            <Button
-                    android:id="@+id/companyName_bt"
-                    android:text="会社名"
-                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"/>
-            <Button
-                    android:id="@+id/name_bt"
-                    android:text="名前"
-                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"/>
-            <Button
-                    android:id="@+id/phone_bt"
-                    android:text="電話番号"
-                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"/>
-            <Button
-                    android:id="@+id/adress_bt"
-                    android:text="住所"
-                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"/>
-            <Button
-                    android:id="@+id/sns_bt"
-                    android:text="SNS"
-                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"/>
-            <Button
-                    android:id="@+id/position_bt"
-                    android:text="役割"
-                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"/>
-            <Button
-                    android:id="@+id/image_bt"
-                    android:text="写真"
-                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"/>
-            <Button
-                    android:id="@+id/companyUrl_bt"
-                    android:text="会社URL"
-                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"/>
-            <Button
-                    android:id="@+id/fax_bt"
-                    android:text="Fax"
-                    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="1"/>
-        </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
