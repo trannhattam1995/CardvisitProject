@@ -112,7 +112,7 @@ class Update_CardvisitActivity : AppCompatActivity() {
                         if (it.isNotEmpty()){
                             var selected_textView = selected as TextView
 
-                            selected_textView.setTypeface(arrayOf(Typeface))
+//                            selected_textView.setTypeface(arrayOf(Typeface))
                         }
                     }
                 }
