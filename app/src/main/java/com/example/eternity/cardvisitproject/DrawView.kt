@@ -5,7 +5,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-
+import kotlinx.android.synthetic.main.activity_update__cardvisit.view.*
 
 
 /**
@@ -37,7 +37,7 @@ class DrawView : View {
     var point_y : Float = 0f
     var bitmap :Bitmap? = null
 
-    var saveBitmap : Bitmap? = null
+    var temple : Int? = null
 
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs){
         path = Path()
@@ -48,6 +48,7 @@ class DrawView : View {
         paint.strokeJoin = Paint.Join.ROUND
         paint.strokeCap = Paint.Cap.ROUND
         paint.setStrokeWidth(10f)
+        temple = R.drawable.temple1
         ///paint.isAntiAlias = true
 
     }
@@ -58,9 +59,9 @@ class DrawView : View {
         super.onDraw(canvas)
 
 
-//        //バックグラウンドを描く処理
-//        bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources, R.drawable.background) , DrawView.width,DrawView.height,false)
-//        canvas.drawBitmap(bitmap,0f,0f,paint)
+        //バックグラウンドを描く処理
+        bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources, temple!!) , DrawView.width,DrawView.height,false)
+        canvas.drawBitmap(bitmap,0f,0f,paint)
         //paint を描く処理
         canvas.drawPath(path,paint)
 
