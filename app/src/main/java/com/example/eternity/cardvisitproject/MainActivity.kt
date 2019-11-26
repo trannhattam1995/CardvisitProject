@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         update_bt.setOnClickListener({
-            val intent = Intent(this, Information_Register::class.java)
+            val intent = Intent(this, Update_CardvisitActivity::class.java)
             startActivity(intent)
         })
 
