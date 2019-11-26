@@ -29,7 +29,7 @@ import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
 
 
-class Update_CardvisitActivity : AppCompatActivity() {
+class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
 
     var drawView : DrawView ? = null
 
@@ -39,6 +39,13 @@ class Update_CardvisitActivity : AppCompatActivity() {
 
 
         drawView = findViewById(R.id.DrawView)
+
+        circle_bt.setOnClickListener(this)
+        quare_bt.setOnClickListener(this)
+        line_bt.setOnClickListener(this)
+        paint_bt.setOnClickListener(this)
+        oval_bt.setOnClickListener(this)
+        drag_bt.setOnClickListener(this)
 
 //        Fontsize_bt.setOnClickListener(){
 //            Fontsize_bt.setVisibility(View.GONE)
@@ -146,5 +153,35 @@ class Update_CardvisitActivity : AppCompatActivity() {
 //            newText.setOnTouchListener((moveLis))
 //        })
 
+    }
+
+    override fun onClick(p0: View?) {
+        when(p0!!.id){
+
+
+            R.id.circle_bt -> {
+                drawView!!.shape_ID = Shape_ID.SHAPE_CIRCLE
+            }
+
+            R.id.quare_bt ->{
+                drawView!!.shape_ID = Shape_ID.SHAPE_QUARE
+            }
+
+            R.id.line_bt ->{
+                drawView!!.shape_ID = Shape_ID.SHAPE_LINE
+            }
+
+            R.id.paint_bt ->{
+                drawView!!.shape_ID = Shape_ID.SHAPE_PAINT
+            }
+
+            R.id.oval_bt ->{
+                drawView!!.shape_ID = Shape_ID.SHAPE_OVAL
+            }
+
+            R.id.drag_bt ->{
+                drawView!!.shape_ID = Shape_ID.NONE_SHAPE
+            }
+        }
     }
 }
