@@ -65,7 +65,7 @@ class Update_CardvisitActivity : AppCompatActivity() {
                     item?.let {
                         if (it.isNotEmpty()){
                             var selected_textView = selected as TextView
-                            selected_textView.setTextColor(Color.parseColor(it))
+                            //selected_textVisew.setTextColor(Color.parseColor(it))
 
                         }
                     }
