@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="txt_info_arr">
+    <string-array name="color_arr">
         <item></item>
         <item>RED</item>
         <item>BLUE</item>
         <item>GREEN</item>
         <item>YELLOW</item>
+        <item>GRAY</item>
+        <item>MAGENTA</item>
     </string-array>
 </resources>

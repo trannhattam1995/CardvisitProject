@@ -1,5 +1,8 @@
 package com.example.eternity.cardvisitproject
 
+import android.app.AlertDialog
+import android.app.Dialog
+import android.app.PendingIntent.getActivity
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -13,10 +16,16 @@ import kotlinx.android.synthetic.main.activity_update__cardvisit.*
 import org.w3c.dom.Text
 import android.graphics.Typeface
 import android.widget.TextView
+//import android.support.v4.app.SupportActivity
+//import android.support.v4.app.SupportActivity.ExtraData
+import android.support.v4.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.support.v4.app.SupportActivity
 import android.support.v4.app.SupportActivity.ExtraData
 import android.support.v4.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 
 
@@ -30,10 +39,12 @@ class Update_CardvisitActivity : AppCompatActivity() {
         setContentView(R.layout.activity_update__cardvisit)
 
 
-        /*val Companyname = (Companyname)
-        val customFont = Typeface.createFromAsset(assets, "MPLUSRounded1c-Thin.ttf")
-        Companyname.setTypeface(customFont)*/
 
+
+
+        Fontsize_bt.setOnClickListener(){
+            Fontsize_bt.setVisibility(View.GONE)
+        }
 
 
         /*移動させる処理*/
@@ -54,12 +65,8 @@ class Update_CardvisitActivity : AppCompatActivity() {
                     item?.let {
                         if (it.isNotEmpty()){
                             var selected_textView = selected as TextView
-                            when(it) {
-                                "BLUE" -> selected_textView.setTextColor(Color.BLUE)
-                                "RED" -> selected_textView.setTextColor(Color.RED)
-                                "GREEN" -> selected_textView.setTextColor(Color.GREEN)
-                                "YELLOW" -> selected_textView.setTextColor(Color.YELLOW)
-                            }
+                            selected_textView.setTextColor(Color.parseColor(it))
+
                         }
                     }
                 }
@@ -84,9 +91,35 @@ class Update_CardvisitActivity : AppCompatActivity() {
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
 
+
         Fontsize_bt.setOnClickListener({
 
         })
+
+        /*フォント変更*/
+        Customfont_sp.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override
+                fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    val spinner = parent as? Spinner
+                    val item = spinner?.selectedItem as? String
+                    item?.let {
+                        if (it.isNotEmpty()){
+                            var selected_textView = selected as TextView
+
+//                            selected_textView.setTypeface(arrayOf(Typeface))
+                        }
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+            }
+
 
         /*シークバーの処理*/
         Fontsize_sb.setOnSeekBarChangeListener(
@@ -107,14 +140,14 @@ class Update_CardvisitActivity : AppCompatActivity() {
             }
         )
 
-
-        name_bt.setOnClickListener({
+        Fontimage_bt.setOnClickListener({
             var newText = TextView(this)
             newText.setTextSize(60f)
-            newText.setText("test")
+            newText.setText("永嶋　ひなえ　Nagasima　ヒナエ")
             CardLayout.addView((newText))
-            newText.setOnTouchListener(moveLis)
+            newText.setOnTouchListener((moveLis))
         })
+
     }
 
 
