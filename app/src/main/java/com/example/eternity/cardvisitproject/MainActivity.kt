@@ -29,6 +29,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         })
 
+        profile_update_bt.setOnClickListener({
+            val intent = Intent(this ,Information_Register::class.java)
+            startActivity(intent)
+        })
+
         var preference  = getSharedPreferences("cardImage" , Context.MODE_PRIVATE)
         var img_decode : String = preference.getString("image" , "")
         var byte = Base64.decode( img_decode.toByteArray() , Base64.DEFAULT)
