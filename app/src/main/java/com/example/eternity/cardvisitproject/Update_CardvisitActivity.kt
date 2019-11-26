@@ -31,165 +31,120 @@ import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
 class Update_CardvisitActivity : AppCompatActivity() {
 
-    var selected : View? = null
-    var preSelected : View? = null
+    var drawView : DrawView ? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update__cardvisit)
 
 
+        drawView = findViewById(R.id.DrawView)
 
+//        Fontsize_bt.setOnClickListener(){
+//            Fontsize_bt.setVisibility(View.GONE)
+//        }
+//
+//
+//        /*移動させる処理*/
+//        val moveLis : DragViewListener = DragViewListener(TextView(this))
+//
+//        /*カラースピナー*/
+//        Color_sp.onItemSelectedListener =
+//            object : AdapterView.OnItemSelectedListener {
+//                override
+//                fun onItemSelected(
+//                    parent: AdapterView<*>?,
+//                    view: View?,
+//                    position: Int,
+//                    id: Long
+//                ) {
+//                    val spinner = parent as? Spinner
+//                    val item = spinner?.selectedItem as? String
+//                    item?.let {
+//                        if (it.isNotEmpty()){
+//                            var selected_textView = selected as TextView
+//                            selected_textView.setTextColor(Color.parseColor(it))
+//
+//                        }
+//                    }
+//                }
+//
+//                override fun onNothingSelected(parent: AdapterView<*>?) {}
+//            }
+//
+//        /*テンプレートスピナー*/
+//        Temp_sp.onItemSelectedListener =
+//            object : AdapterView.OnItemSelectedListener {
+//                override
+//                fun onItemSelected(
+//                    parent: AdapterView<*>?,
+//                    view: View?,
+//                    position: Int,
+//                    id: Long
+//                ) {
+//
+//                }
+//
+//
+//                override fun onNothingSelected(parent: AdapterView<*>?) {}
+//            }
+//
+//
+//        Fontsize_bt.setOnClickListener({
+//
+//        })
+//
+//        /*フォント変更*/
+//        Customfont_sp.onItemSelectedListener =
+//            object : AdapterView.OnItemSelectedListener {
+//                override
+//                fun onItemSelected(
+//                    parent: AdapterView<*>?,
+//                    view: View?,
+//                    position: Int,
+//                    id: Long
+//                ) {
+//                    val spinner = parent as? Spinner
+//                    val item = spinner?.selectedItem as? String
+//                    item?.let {
+//                        if (it.isNotEmpty()){
+//                            var selected_textView = selected as TextView
+//
+////                            selected_textView.setTypeface(arrayOf(Typeface))
+//                        }
+//                    }
+//                }
+//
+//                override fun onNothingSelected(parent: AdapterView<*>?) {}
+//            }
+//
+//
+//        /*シークバーの処理*/
+//        Fontsize_sb.setOnSeekBarChangeListener(
+//            object : SeekBar.OnSeekBarChangeListener{
+//
+//                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+//                    if( selected != null) {
+//                        var selected_textView = selected as TextView
+//                        selected_textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,progress.toFloat())
+//                    }
+//                }
+//
+//                override fun onStartTrackingTouch(p0: SeekBar?) {
+//                }
+//
+//                override fun onStopTrackingTouch(p0: SeekBar?) {
+//                }
+//            }
+//        )
+//
+//        Fontimage_bt.setOnClickListener({
+//            var newText = TextView(this)
+//            newText.setTextSize(60f)
+//            newText.setText("永嶋　ひなえ　Nagasima　ヒナエ")
+//            CardLayout.addView((newText))
+//            newText.setOnTouchListener((moveLis))
+//        })
 
-
-        Fontsize_bt.setOnClickListener(){
-            Fontsize_bt.setVisibility(View.GONE)
-        }
-
-
-        /*移動させる処理*/
-        val moveLis : DragViewListener = DragViewListener(TextView(this))
-
-        /*カラースピナー*/
-        Color_sp.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override
-                fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    val spinner = parent as? Spinner
-                    val item = spinner?.selectedItem as? String
-                    item?.let {
-                        if (it.isNotEmpty()){
-                            var selected_textView = selected as TextView
-                            selected_textView.setTextColor(Color.parseColor(it))
-
-                        }
-                    }
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {}
-            }
-
-        /*テンプレートスピナー*/
-        Temp_sp.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override
-                fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-
-                }
-
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {}
-            }
-
-
-        Fontsize_bt.setOnClickListener({
-
-        })
-
-        /*フォント変更*/
-        Customfont_sp.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override
-                fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    val spinner = parent as? Spinner
-                    val item = spinner?.selectedItem as? String
-                    item?.let {
-                        if (it.isNotEmpty()){
-                            var selected_textView = selected as TextView
-
-//                            selected_textView.setTypeface(arrayOf(Typeface))
-                        }
-                    }
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {}
-            }
-
-
-        /*シークバーの処理*/
-        Fontsize_sb.setOnSeekBarChangeListener(
-            object : SeekBar.OnSeekBarChangeListener{
-
-                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                    if( selected != null) {
-                        var selected_textView = selected as TextView
-                        selected_textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,progress.toFloat())
-                    }
-                }
-
-                override fun onStartTrackingTouch(p0: SeekBar?) {
-                }
-
-                override fun onStopTrackingTouch(p0: SeekBar?) {
-                }
-            }
-        )
-
-        Fontimage_bt.setOnClickListener({
-            var newText = TextView(this)
-            newText.setTextSize(60f)
-            newText.setText("永嶋　ひなえ　Nagasima　ヒナエ")
-            CardLayout.addView((newText))
-            newText.setOnTouchListener((moveLis))
-        })
-
-    }
-
-
-    /* textview 移動する処理*/
-    internal inner class DragViewListener(view: View) : View.OnTouchListener {
-        // ドラッグ中に移動量を取得するための変数
-        private var oldx: Int = 0
-        private var oldy: Int = 0
-
-        override fun onTouch(view: View, event: MotionEvent): Boolean {
-            // タッチしている位置取得
-            val x = event.rawX.toInt()
-            val y = event.rawY.toInt()
-
-            when (event.action) {
-                MotionEvent.ACTION_DOWN ->{
-                    selected = view
-                    if( preSelected != null){
-                        preSelected?.setBackgroundColor(Color.TRANSPARENT)
-                    }
-                    //selected?.setBackgroundColor(Color.argb(31, 255, 0, 0))
-                    selected?.setBackgroundResource(R.drawable.myrec)
-
-                }
-                MotionEvent.ACTION_MOVE -> {
-                    // 今回イベントでのView移動先の位置
-                    val left = view.getLeft() + (x - oldx)
-                    val top = view.getTop() + (y - oldy)
-                    // Viewを移動する
-                    view.layout(left, top, left + view.getWidth(), top + view.getHeight())
-                }
-                MotionEvent.ACTION_UP ->{
-
-                    preSelected = view
-                }
-            }
-
-            // 今回のタッチ位置を保持
-            oldx = x
-            oldy = y
-            // イベント処理完了
-            return true
-        }
     }
 }
