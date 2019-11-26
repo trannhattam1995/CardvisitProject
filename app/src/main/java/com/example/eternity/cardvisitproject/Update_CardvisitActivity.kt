@@ -1,32 +1,17 @@
 package com.example.eternity.cardvisitproject
 
-import android.app.AlertDialog
-import android.app.Dialog
-import android.app.PendingIntent.getActivity
-import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.util.TypedValue
-import android.view.MotionEvent
-import android.view.View
-import android.widget.*
-import kotlinx.android.synthetic.main.activity_information__register.*
-import kotlinx.android.synthetic.main.activity_update__cardvisit.*
-import org.w3c.dom.Text
-import android.graphics.Typeface
-import android.widget.TextView
 //import android.support.v4.app.SupportActivity
 //import android.support.v4.app.SupportActivity.ExtraData
-import android.support.v4.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.support.v4.app.SupportActivity
-import android.support.v4.app.SupportActivity.ExtraData
-import android.support.v4.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
-
-
+import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.util.Base64
+import android.view.View
+import kotlinx.android.synthetic.main.activity_update__cardvisit.*
+import java.io.ByteArrayOutputStream
 
 
 class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
@@ -46,7 +31,7 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
         paint_bt.setOnClickListener(this)
         oval_bt.setOnClickListener(this)
         drag_bt.setOnClickListener(this)
-
+        save_bt.setOnClickListener(this)
 //        Fontsize_bt.setOnClickListener(){
 //            Fontsize_bt.setVisibility(View.GONE)
 //        }
@@ -181,6 +166,23 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
 
             R.id.drag_bt ->{
                 drawView!!.shape_ID = Shape_ID.NONE_SHAPE
+            }
+            R.id.save_bt ->{
+                val bitmap = Bitmap.createBitmap(DrawLayout.getWidth(), DrawLayout.getHeight(), Bitmap.Config.ARGB_8888)
+                val canvas = Canvas(bitmap)
+                DrawLayout.draw(canvas)
+
+                var byteArrayOutputStream : ByteArrayOutputStream = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.PNG , 100, byteArrayOutputStream)
+                var data = byteArrayOutputStream.toByteArray()
+                val imageEncoded = Base64.encodeToString(data, Base64.DEFAULT)
+
+                var preference  = getSharedPreferences("cardImage" , Context.MODE_PRIVATE)
+                var editor = preference.edit()
+                editor.putString("image" , imageEncoded)
+                editor.commit()
+                var intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
             }
         }
     }
