@@ -74,7 +74,7 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
                         if (it.isNotEmpty()){
 //                            var selected_textView = selected as TextView
 //                            selected_textView.setTextColor(Color.parseColor(it))
-                            drawView!!.paint.color = Color.parseColor(it)
+                            drawView!!.setPaintColor(Color.parseColor(it))
 
                         }
                     }
