@@ -182,6 +182,8 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
             R.id.drag_bt ->{
                 drawView!!.shape_ID = Shape_ID.NONE_SHAPE
             }
+
+
         }
     }
 }
