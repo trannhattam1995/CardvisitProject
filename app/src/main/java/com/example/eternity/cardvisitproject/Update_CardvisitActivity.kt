@@ -82,7 +82,7 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
-//
+
 //        /*テンプレートスピナー*/
 //        Temp_sp.onItemSelectedListener =
 //            object : AdapterView.OnItemSelectedListener {
@@ -105,29 +105,28 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
 //
 //        })
 //
-//        /*フォント変更*/
-//        Customfont_sp.onItemSelectedListener =
-//            object : AdapterView.OnItemSelectedListener {
-//                override
-//                fun onItemSelected(
-//                    parent: AdapterView<*>?,
-//                    view: View?,
-//                    position: Int,
-//                    id: Long
-//                ) {
-//                    val spinner = parent as? Spinner
-//                    val item = spinner?.selectedItem as? String
-//                    item?.let {
-//                        if (it.isNotEmpty()){
+        /*フォント変更*/
+        customfont_sp.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override
+                fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    val spinner = parent as? Spinner
+                    val item = spinner?.selectedItem as? String
+                    item?.let {
+                        if (it.isNotEmpty()){
 //                            var selected_textView = selected as TextView
-//
-////                            selected_textView.setTypeface(arrayOf(Typeface))
-//                        }
-//                    }
-//                }
-//
-//                override fun onNothingSelected(parent: AdapterView<*>?) {}
-//            }
+//                            selected_textView.setTypeface(arrayOf(Typeface))
+                        }
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+            }
 //
 //
 //        /*シークバーの処理*/
@@ -149,14 +148,14 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
 //            }
 //        )
 //
-//        Fontimage_bt.setOnClickListener({
+//        fontimage_bt.setOnClickListener({
 //            var newText = TextView(this)
 //            newText.setTextSize(60f)
 //            newText.setText("永嶋　ひなえ　Nagasima　ヒナエ")
 //            CardLayout.addView((newText))
 //            newText.setOnTouchListener((moveLis))
 //        })
-
+//
     }
 
     override fun onClick(p0: View?) {
@@ -186,6 +185,7 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
             R.id.drag_bt ->{
                 drawView!!.shape_ID = Shape_ID.NONE_SHAPE
             }
+
             R.id.save_bt ->{
                 val bitmap = Bitmap.createBitmap(DrawLayout.getWidth(), DrawLayout.getHeight(), Bitmap.Config.ARGB_8888)
                 val canvas = Canvas(bitmap)
