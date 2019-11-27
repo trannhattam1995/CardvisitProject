@@ -67,15 +67,7 @@
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:layout_weight="1">
-
-                <Spinner
-                        android:id="@+id/color_sp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:entries="@array/color_arr" />
-            </LinearLayout>
+                    android:layout_height="match_parent" android:layout_weight="1"/>
 
             <LinearLayout
                     android:orientation="horizontal"
