@@ -5,134 +5,95 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Update_CardvisitActivity">
+        android:layout_weight="1" tools:context=".Update_CardvisitActivity">
     <LinearLayout
-            android:id="@+id/Mainlayout"
+            android:id="@+id/MainLayout"
             android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.39">
-
+            android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent">
+        <FrameLayout
+                android:id="@+id/DrawLayout"
+                android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1">
+            <com.example.eternity.cardvisitproject.DrawView android:id="@+id/DrawView"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent"/>
+        </FrameLayout>
         <LinearLayout
-                android:id="@+id/CreateLayout"
+                android:id="@+id/ToolLayout"
                 android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
+                android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="3"
+                android:weightSum="5">
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4">
+                    android:layout_height="match_parent" android:layout_weight="2">
+                <ImageButton
+                        android:id="@+id/circle_bt"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_weight="1"
+                        app:srcCompat="@android:drawable/radiobutton_off_background"/>
 
                 <ImageButton
-                        android:id="@+id/back_bt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@android:drawable/ic_media_previous"/>
-
-                <ImageButton
-                        android:id="@+id/update_bt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@android:drawable/ic_input_get"/>
-            </LinearLayout>
-
-            <android.support.constraint.ConstraintLayout
-                    android:id="@+id/CardLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:layout_weight="1">
-
-                <fragment
-                        android:id="@+id/fragment3"
-                        android:name="com.example.eternity.cardvisitproject.Temple_Normal"
-                        android:layout_width="0dp" android:layout_height="0dp"
-                        android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-                        android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-                        android:layout_marginBottom="8dp" android:layout_marginTop="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
-
-                <com.example.eternity.cardvisitproject.DrawView
-                        android:id="@+id/drawView"
+                        android:id="@+id/quare_bt"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        tools:layout_editor_absoluteX="51dp"
-                        tools:layout_editor_absoluteY="-30dp" />
+                        android:layout_weight="1"
+                        app:srcCompat="@android:drawable/checkbox_off_background" />
 
-            </android.support.constraint.ConstraintLayout>
+                <ImageButton
+                        android:id="@+id/line_bt"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:srcCompat="@android:drawable/editbox_background" />
+                <ImageButton
+                        android:id="@+id/paint_bt"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" android:layout_weight="1"
+                        app:srcCompat="@drawable/myrec"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:layout_weight="1">
+                <ImageView
+                        android:id="@+id/drag_bt"
+                        android:layout_width="183dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@android:drawable/ic_menu_edit"/>
+                <ImageButton
+                        android:id="@+id/oval_bt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@android:drawable/sym_action_chat"/>
+            </LinearLayout>
 
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="4">
-
-                <Spinner
-                        android:id="@+id/Color_sp"
-                        android:layout_width="51dp"
-                        android:layout_height="match_parent"
-                        android:entries="@array/color_arr"
-                        android:spinnerMode="dropdown"
-                        android:background="@android:color/white"
-                        android:popupBackground="#D3D5D3"
-                        android:paddingRight="10dp" />
-
-                <Spinner
-                        android:id="@+id/Temp_sp"
-                        android:layout_width="9dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:spinnerMode="dropdown" />
+                    android:layout_weight="1"
+                    android:scrollbarSize="1dp">
 
                 <ImageButton
-                        android:id="@+id/Fontsize_bt"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/save_bt"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@android:drawable/ic_menu_sort_alphabetically"/>
-
+                        app:srcCompat="@android:drawable/ic_menu_save"/>
                 <ImageButton
-                        android:id="@+id/Fontimage_bt"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/back_bt"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@android:drawable/ic_menu_manage"/>
-
-                <Spinner
-                        android:id="@+id/Customfont_sp"
-                        android:layout_width="51dp"
-                        android:layout_height="match_parent"
-                        android:entries="@array/customfont_arr"
-                        android:spinnerMode="dialog"
-                        android:background="@android:color/white"
-                        android:popupBackground="#D3D5D3"
-                        android:paddingRight="10dp"
-                        android:layout_weight="1" />
-
-                <SeekBar
-                        android:id="@+id/Fontsize_sb"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:max="80"
-                        android:progress="30" />
-
-                <Spinner
-                        android:id="@+id/Profile_sp"
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
+                        app:srcCompat="@android:drawable/ic_delete"/>
             </LinearLayout>
-
         </LinearLayout>
-
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

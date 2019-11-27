@@ -5,7 +5,6 @@
         android:layout_height="match_parent">
 
     <com.example.eternity.cardvisitproject.DrawView
-            android:id="@+id/DrawView"
             android:background="#ccc"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -13,6 +12,7 @@
             android:paddingBottom="40dp"
             app:exampleColor="#33b5e5"
             app:exampleDimension="24sp"
-            app:exampleDrawable="@android:drawable/ic_menu_add" app:exampleString="Hello, DrawView"/>
+            app:exampleDrawable="@android:drawable/ic_menu_add"
+            app:exampleString="Hello, DrawView"/>
 
 </FrameLayout>
