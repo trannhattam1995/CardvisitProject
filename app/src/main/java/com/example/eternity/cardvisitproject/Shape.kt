@@ -11,7 +11,7 @@ abstract class Shape{
     constructor(x: Float, y: Float, paint: Paint) {
         this.x = x
         this.y = y
-        this.paint = paint
+        this.paint.color = paint.color
     }
 
     abstract fun draw(canvas: Canvas)

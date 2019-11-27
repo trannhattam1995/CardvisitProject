@@ -1,6 +1,7 @@
 package com.example.eternity.cardvisitproject
 
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 
 class Circle : Shape{
@@ -12,7 +13,7 @@ class Circle : Shape{
 
 
     override fun draw(canvas: Canvas){
-        canvas.drawCircle(this.x,this.y,this.r,paint)
+        canvas.drawCircle(this.x,this.y,this.r , this.paint)
     }
 
     override fun isOnTouch(point_x: Float, point_y: Float): Boolean {
@@ -31,7 +32,7 @@ class Circle : Shape{
     fun update(x: Float, y: Float, r : Float, paint: Paint) {
         super.x = x
         super.y = y
-        super.paint = paint
+        super.paint.color = paint.color
         this.r = r
     }
 }

@@ -38,7 +38,7 @@ public class Oval : Shape{
     fun update(x: Float, y: Float, e_x: Float, e_y: Float, paint: Paint) {
         super.x = x
         super.y = y
-        super.paint = paint
+        super.paint.color = paint.color
         this.e_x = e_x
         this.e_y = e_y
     }

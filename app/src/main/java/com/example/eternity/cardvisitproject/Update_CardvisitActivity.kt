@@ -29,6 +29,7 @@ import android.support.v4.app.SupportActivity.ExtraData
 import android.support.v4.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.util.Base64
+import com.example.eternity.cardvisitproject.R.id.*
 import java.io.ByteArrayOutputStream
 
 

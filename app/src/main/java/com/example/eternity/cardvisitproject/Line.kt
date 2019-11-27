@@ -10,6 +10,10 @@ public class Line : Shape{
     constructor(x: Float, y: Float, e_x: Float, e_y: Float, paint: Paint) : super(x, y, paint) {
         this.e_x = e_x
         this.e_y = e_y
+        this.paint.style = Paint.Style.STROKE
+        this.paint.strokeJoin = Paint.Join.ROUND
+        this.paint.strokeCap = Paint.Cap.ROUND
+        this.paint.setStrokeWidth(10f)
     }
 
     override fun draw(canvas: Canvas) {
@@ -31,7 +35,7 @@ public class Line : Shape{
     fun update(x: Float, y: Float, e_x: Float, e_y: Float, paint: Paint) {
         super.x = x
         super.y = y
-        super.paint = paint
+        super.paint.color = paint.color
         this.e_x = e_x
         this.e_y = e_y
     }
