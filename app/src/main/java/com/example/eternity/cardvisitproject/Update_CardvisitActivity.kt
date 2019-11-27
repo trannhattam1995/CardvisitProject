@@ -47,6 +47,8 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
         oval_bt.setOnClickListener(this)
         drag_bt.setOnClickListener(this)
 
+        //color_sp.set(this)
+
 //        Fontsize_bt.setOnClickListener(){
 //            Fontsize_bt.setVisibility(View.GONE)
 //        }
@@ -158,30 +160,34 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
     override fun onClick(p0: View?) {
         when(p0!!.id){
 
-
             R.id.circle_bt -> {
                 drawView!!.shape_ID = Shape_ID.SHAPE_CIRCLE
             }
 
-            R.id.quare_bt ->{
+            R.id.quare_bt -> {
                 drawView!!.shape_ID = Shape_ID.SHAPE_QUARE
             }
 
-            R.id.line_bt ->{
+            R.id.line_bt -> {
                 drawView!!.shape_ID = Shape_ID.SHAPE_LINE
             }
 
-            R.id.paint_bt ->{
+            R.id.paint_bt -> {
                 drawView!!.shape_ID = Shape_ID.SHAPE_PAINT
             }
 
-            R.id.oval_bt ->{
+            R.id.oval_bt -> {
                 drawView!!.shape_ID = Shape_ID.SHAPE_OVAL
             }
 
-            R.id.drag_bt ->{
+            R.id.drag_bt -> {
                 drawView!!.shape_ID = Shape_ID.NONE_SHAPE
             }
+
+//            R.id.color_sp -> {
+//
+//            }
+
         }
     }
 }
