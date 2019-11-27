@@ -58,29 +58,30 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
 //        /*移動させる処理*/
 //        val moveLis : DragViewListener = DragViewListener(TextView(this))
 //
-//        /*カラースピナー*/
-//        Color_sp.onItemSelectedListener =
-//            object : AdapterView.OnItemSelectedListener {
-//                override
-//                fun onItemSelected(
-//                    parent: AdapterView<*>?,
-//                    view: View?,
-//                    position: Int,
-//                    id: Long
-//                ) {
-//                    val spinner = parent as? Spinner
-//                    val item = spinner?.selectedItem as? String
-//                    item?.let {
-//                        if (it.isNotEmpty()){
+        /*カラースピナー*/
+        color_sp.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override
+                fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    val spinner = parent as? Spinner
+                    val item = spinner?.selectedItem as? String
+                    item?.let {
+                        if (it.isNotEmpty()){
 //                            var selected_textView = selected as TextView
 //                            selected_textView.setTextColor(Color.parseColor(it))
-//
-//                        }
-//                    }
-//                }
-//
-//                override fun onNothingSelected(parent: AdapterView<*>?) {}
-//            }
+                            drawView!!.paint.color = Color.parseColor(it)
+
+                        }
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+            }
 //
 //        /*テンプレートスピナー*/
 //        Temp_sp.onItemSelectedListener =
