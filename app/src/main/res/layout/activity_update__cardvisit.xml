@@ -19,9 +19,9 @@
             android:orientation="horizontal"
             android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp" android:layout_marginEnd="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent">
         <FrameLayout
                 android:id="@+id/DrawLayout"
@@ -33,11 +33,15 @@
                     android:id="@+id/sample"
                     android:text="永嶋　ひなえ　nagashima　ヒナエ"
                     android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="30sp"/>
+            <Button
+                    android:id="@+id/button"
+                    android:text="Button"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
         </FrameLayout>
         <LinearLayout
                 android:id="@+id/ToolLayout"
                 android:orientation="vertical"
-                android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="3"
+                android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="2"
                 android:weightSum="5">
             <LinearLayout
                     android:orientation="horizontal"
@@ -54,14 +58,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        app:srcCompat="@android:drawable/checkbox_off_background" />
+                        app:srcCompat="@android:drawable/checkbox_off_background"/>
 
                 <ImageButton
                         android:id="@+id/line_bt"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        app:srcCompat="@android:drawable/editbox_background" />
+                        app:srcCompat="@android:drawable/editbox_background"/>
                 <ImageButton
                         android:id="@+id/paint_bt"
                         android:layout_width="match_parent"
@@ -71,16 +75,16 @@
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:layout_weight="1">
+                    android:layout_height="173dp" android:layout_weight="1">
                 <ImageView
                         android:id="@+id/drag_bt"
                         android:layout_width="183dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="69dp"
                         android:layout_weight="1"
                         app:srcCompat="@android:drawable/ic_menu_edit"/>
                 <Spinner
                         android:id="@+id/color_sp"
-                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_width="match_parent" android:layout_height="40dp"
                         android:layout_weight="1" android:entries="@array/color_arr"/>
                 <ImageButton
                         android:id="@+id/oval_bt"
@@ -107,6 +111,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         app:srcCompat="@android:drawable/ic_menu_save"/>
+                <SeekBar
+                        android:id="@+id/fontsize_sb"
+                        android:layout_width="260dp" android:layout_height="43dp" android:layout_weight="1"
+                        android:max="500" android:progress="250"/>
                 <ImageButton
                         android:id="@+id/back_bt"
                         android:layout_width="match_parent"

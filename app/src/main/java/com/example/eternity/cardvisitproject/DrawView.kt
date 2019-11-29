@@ -49,6 +49,7 @@ class DrawView : View {
         paint.strokeJoin = Paint.Join.ROUND
         paint.strokeCap = Paint.Cap.ROUND
         paint.setStrokeWidth(10f)
+
         temple = R.drawable.temple1
         ///paint.isAntiAlias = true
 
@@ -94,6 +95,12 @@ class DrawView : View {
         invalidate()
     }
 
+    //新しい四角形を描く
+    fun DrawText(content: String, x : Float , y :Float , paint : Paint){
+        var text : Text = Text(content,x,y, paint)
+        listShape.add(text)
+        invalidate()
+    }
 
     //新しい四角形を描く
     fun DrawQuare( x : Float , y :Float ,e_x : Float , e_y : Float ,  paint : Paint){
@@ -107,6 +114,7 @@ class DrawView : View {
         quare.update(x,y,e_x,e_y,paint)
         invalidate()
     }
+
 
     //新しい線を引く
     fun DrawLine(  x : Float , y :Float ,e_x : Float , e_y : Float ,  paint : Paint){
@@ -174,6 +182,14 @@ class DrawView : View {
                         s_x = event.x
                         s_y = event.y
                     }
+                    Shape_ID.SHAPE_TEXT->{
+                        s_x = event.x
+                        s_y = event.y
+
+                        DrawText("text",s_x,s_y,paint)
+
+
+                    }
                     Shape_ID.SHAPE_PAINT->{
                         path.moveTo(event.x,event.y)
                         invalidate()
@@ -225,17 +241,18 @@ class DrawView : View {
                         invalidate()
                     }
                     Shape_ID.SHAPE_QUARE->{
-                        e_x = event.x
-                        e_y = event.y
-                        if( isDropMove == false){
-                            DrawQuare(s_x,s_y,s_x,s_y,paint)
-                            isDropMove = true
-                        }else{
-                            var quare = listShape[listShape.size-1] as Quare
-                            UpdateQuare(quare  , s_x,s_y,e_x,e_y,paint)
-                        }
-
+                    e_x = event.x
+                    e_y = event.y
+                    if( isDropMove == false){
+                        DrawQuare(s_x,s_y,s_x,s_y,paint)
+                        isDropMove = true
+                    }else{
+                        var quare = listShape[listShape.size-1] as Quare
+                        UpdateQuare(quare  , s_x,s_y,e_x,e_y,paint)
                     }
+
+                }
+
                     Shape_ID.SHAPE_OVAL->{
                         e_x = event.x
                         e_y = event.y
