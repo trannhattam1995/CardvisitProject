@@ -51,6 +51,7 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
         oval_bt.setOnClickListener(this)
         drag_bt.setOnClickListener(this)
         save_bt.setOnClickListener(this)
+        button.setOnClickListener(this)
 //        Fontsize_bt.setOnClickListener(){
 //            Fontsize_bt.setVisibility(View.GONE)
 //        }
@@ -76,7 +77,6 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
 //                            var selected_textView = selected as TextView
 //                            selected_textView.setTextColor(Color.parseColor(it))
                             drawView!!.setPaintColor(Color.parseColor(it))
-
                         }
                     }
                 }
@@ -130,24 +130,24 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
             }
 //
 //
-//        /*シークバーの処理*/
-//        Fontsize_sb.setOnSeekBarChangeListener(
-//            object : SeekBar.OnSeekBarChangeListener{
-//
-//                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+        /*シークバーの処理*/
+        fontsize_sb.setOnSeekBarChangeListener(
+            object : SeekBar.OnSeekBarChangeListener{
+
+                override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
 //                    if( selected != null) {
 //                        var selected_textView = selected as TextView
-//                        selected_textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,progress.toFloat())
-//                    }
-//                }
-//
-//                override fun onStartTrackingTouch(p0: SeekBar?) {
-//                }
-//
-//                override fun onStopTrackingTouch(p0: SeekBar?) {
-//                }
-//            }
-//        )
+                        //drawView!!.size(TypedValue.COMPLEX_UNIT_SP,progress.toFloat())
+                    drawView!!.paint.textSize = progress.toFloat()
+                }
+
+                override fun onStartTrackingTouch(p0: SeekBar?) {
+                }
+
+                override fun onStopTrackingTouch(p0: SeekBar?) {
+                }
+            }
+        )
 //
 //        fontimage_bt.setOnClickListener({
 //            var newText = TextView(this)
@@ -203,6 +203,10 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
                 editor.commit()
                 var intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+            }
+
+            R.id.button ->{
+                drawView!!.shape_ID = Shape_ID.SHAPE_TEXT
             }
         }
     }

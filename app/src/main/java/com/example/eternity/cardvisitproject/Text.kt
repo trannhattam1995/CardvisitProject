@@ -6,8 +6,9 @@ import android.graphics.Paint
 public class Text : Shape{
     var content : String = ""
 
-    constructor(x: Float, y: Float, paint: Paint, content: String) : super(x, y, paint) {
+    constructor(content: String, x: Float, y: Float, paint: Paint) : super(x, y, paint) {
         this.content = content
+        super.paint.textSize = paint.textSize
     }
 
     override fun draw(canvas: Canvas) {
