@@ -5,12 +5,14 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.ArrayAdapter
 import io.socket.client.IO
 import kotlinx.android.synthetic.main.activity_card__change.*
+import org.json.JSONArray
 import org.json.JSONObject
 
 
 class Card_ChangeActivity : AppCompatActivity() {
 
     var socket : io.socket.client.Socket? = null
+    var URL = "http://192.168.0.13:3000"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,19 +67,29 @@ class Card_ChangeActivity : AppCompatActivity() {
         var users : ArrayList<String> = ArrayList()
 
         //サーバーにアクセス
-        socket = IO.socket("http://172.30.24.105:3000")
+        socket = IO.socket(URL)
         socket!!.connect()
-        socket!!.emit("resquest" , "test1")
+
         var data : JSONObject
+
+        find_user_bt.setOnClickListener({
+            socket!!.emit("resquest" , "test")
+        })
+
+        var adapter : ArrayAdapter<String> = ArrayAdapter(this,android.R.layout.simple_list_item_1, users)
+        users_list.adapter = adapter
 
         socket!!.on("user-data" , {args -> data = args[0] as JSONObject
             runOnUiThread {
-                var test : String = data.getString("data")
-                users.add(test)
+
+                var listUser : JSONArray = data.getJSONArray("data")
+                for( i in 0..listUser.length()){
+                    adapter.add(listUser.optString(i))
+                }
+                adapter.notifyDataSetInvalidated()
             }
         })
-        var adapter : ArrayAdapter<String> = ArrayAdapter(this,android.R.layout.simple_list_item_1, users)
-        users_list.adapter = adapter
+
 
 
     }
