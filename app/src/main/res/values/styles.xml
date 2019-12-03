@@ -1,21 +1,22 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
         <!--タイトルバー非表示-->
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
+
         <!--テキスト選択時デザイン・edittextデザイン-->
         <item name="colorControlActivated">#a3a3a2</item>
         <item name="android:textColorHighlight">#a3a3a2</item>
         <item name="colorControlNormal">#726250</item>
         <item name="android:textColorHint">#726250</item>
     </style>
-
 </resources>

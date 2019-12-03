@@ -32,7 +32,14 @@ import android.util.Base64
 import com.example.eternity.cardvisitproject.R.id.*
 import java.io.ByteArrayOutputStream
 
+/*class KeyValuePair(key: String, value: String) : Pair<String, String>(key, value) {
 
+    val key: String
+        get() = super.first
+
+    val value: String
+        get() = super.second
+}*/
 class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
 
     var drawView : DrawView ? = null
@@ -59,7 +66,7 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
 //
 //        /*移動させる処理*/
 //        val moveLis : DragViewListener = DragViewListener(TextView(this))
-//
+
         /*カラースピナー*/
         color_sp.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
@@ -84,6 +91,31 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
 
+        /*フォント変更*/
+        customfont_sp.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override
+                    fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        val spinner = parent as? Spinner
+                        val item = spinner?.selectedItem as? String
+                        item?.let {
+                            if (it.isNotEmpty()){
+//                            var selected_textView = selected as TextView
+//                            selected_textView.setTypeface(arrayOf(Typeface))
+                              drawView!!.setPaintColor(Color.parseColor(it))
+                              //drawView!!.paint.textSize = progress.toFloat()
+                            }
+                        }
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>?) {}
+                }
+
 //        /*テンプレートスピナー*/
 //        Temp_sp.onItemSelectedListener =
 //            object : AdapterView.OnItemSelectedListener {
@@ -106,30 +138,6 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
 //
 //        })
 //
-        /*フォント変更*/
-        customfont_sp.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override
-                fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    val spinner = parent as? Spinner
-                    val item = spinner?.selectedItem as? String
-                    item?.let {
-                        if (it.isNotEmpty()){
-//                            var selected_textView = selected as TextView
-//                            selected_textView.setTypeface(arrayOf(Typeface))
-                        }
-                    }
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {}
-            }
-//
-//
         /*シークバーの処理*/
         fontsize_sb.setOnSeekBarChangeListener(
             object : SeekBar.OnSeekBarChangeListener{
@@ -148,15 +156,6 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
                 }
             }
         )
-//
-//        fontimage_bt.setOnClickListener({
-//            var newText = TextView(this)
-//            newText.setTextSize(60f)
-//            newText.setText("永嶋　ひなえ　Nagasima　ヒナエ")
-//            CardLayout.addView((newText))
-//            newText.setOnTouchListener((moveLis))
-//        })
-//
     }
 
     override fun onClick(p0: View?) {
@@ -205,7 +204,7 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
                 startActivity(intent)
             }
 
-            R.id.button ->{
+            R.id.button ->{ /* サンプルテキスト表示ボタン */
                 drawView!!.shape_ID = Shape_ID.SHAPE_TEXT
             }
         }
