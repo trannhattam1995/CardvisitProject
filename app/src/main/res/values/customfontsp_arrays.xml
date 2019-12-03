@@ -2,9 +2,10 @@
 <resources>
     <string-array name="customfont_arr">
         <item></item>
-        <item>Rounded Mplus 1c Black</item>
-        <item>Rounded Mplus 1c Thin</item>
-        <item>Indie Flower</item>
-        <item>Big Shoulders Text SemiBold</item>
+        <item>BalooBhai</item>
+        <item>Caveat</item>
+        <item>KosugiMaru</item>
+        <item>NotoSerifJP-Black</item>
+        <item>NotoSerifJP-Regular</item>
     </string-array>
 </resources>

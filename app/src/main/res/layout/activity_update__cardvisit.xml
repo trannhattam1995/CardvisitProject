@@ -29,10 +29,6 @@
             <com.example.eternity.cardvisitproject.DrawView android:id="@+id/DrawView"
                                                             android:layout_width="match_parent"
                                                             android:layout_height="match_parent"/>
-            <TextView
-                    android:id="@+id/sample"
-                    android:text="永嶋　ひなえ　nagashima　ヒナエ"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="30sp"/>
             <Button
                     android:id="@+id/button"
                     android:text="Button"
