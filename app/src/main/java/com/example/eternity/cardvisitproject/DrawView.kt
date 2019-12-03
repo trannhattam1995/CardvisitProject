@@ -43,12 +43,7 @@ class DrawView : View {
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs){
         path = Path()
 
-        paint = Paint()
-        paint.color = -0xff7800
-        paint.style = Paint.Style.STROKE
-        paint.strokeJoin = Paint.Join.ROUND
-        paint.strokeCap = Paint.Cap.ROUND
-        paint.setStrokeWidth(10f)
+
         temple = R.drawable.temple1
         ///paint.isAntiAlias = true
 
@@ -63,9 +58,19 @@ class DrawView : View {
         //バックグラウンドを描く処理
         bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources, temple!!) , DrawView.width,DrawView.height,false)
         canvas.drawBitmap(bitmap,0f,0f,paint)
-        //paint を描く処理
-        canvas.drawPath(path,paint)
 
+        paint.textSize = 130f
+        canvas.drawText("test" , 500f , 500f , paint)
+
+        //paint を描く処理
+        paint = Paint()
+        paint.color = -0xff7800
+        paint.style = Paint.Style.STROKE
+        paint.strokeJoin = Paint.Join.ROUND
+        paint.strokeCap = Paint.Cap.ROUND
+        paint.setStrokeWidth(40f)
+
+        canvas.drawPath(path,paint)
 //        canvas.drawLine(10f,100f,10f,200f, paint)
         //図形を描く処理
         for(shape in listShape){
