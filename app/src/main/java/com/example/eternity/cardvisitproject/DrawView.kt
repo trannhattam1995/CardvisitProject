@@ -43,6 +43,12 @@ class DrawView : View {
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs){
         path = Path()
 
+        paint = Paint()
+        paint.color = -0xff7800
+        paint.style = Paint.Style.STROKE
+        paint.strokeJoin = Paint.Join.ROUND
+        paint.strokeCap = Paint.Cap.ROUND
+        paint.setStrokeWidth(10f)
 
         temple = R.drawable.temple1
         ///paint.isAntiAlias = true
@@ -58,19 +64,9 @@ class DrawView : View {
         //バックグラウンドを描く処理
         bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources, temple!!) , DrawView.width,DrawView.height,false)
         canvas.drawBitmap(bitmap,0f,0f,paint)
-
-        paint.textSize = 130f
-        canvas.drawText("test" , 500f , 500f , paint)
-
         //paint を描く処理
-        paint = Paint()
-        paint.color = -0xff7800
-        paint.style = Paint.Style.STROKE
-        paint.strokeJoin = Paint.Join.ROUND
-        paint.strokeCap = Paint.Cap.ROUND
-        paint.setStrokeWidth(40f)
-
         canvas.drawPath(path,paint)
+
 //        canvas.drawLine(10f,100f,10f,200f, paint)
         //図形を描く処理
         for(shape in listShape){
@@ -99,6 +95,12 @@ class DrawView : View {
         invalidate()
     }
 
+    //新しい四角形を描く
+    fun DrawText(content: String, x : Float , y :Float , paint : Paint){
+        var text : Text = Text(content,x,y, paint)
+        listShape.add(text)
+        invalidate()
+    }
 
     //新しい四角形を描く
     fun DrawQuare( x : Float , y :Float ,e_x : Float , e_y : Float ,  paint : Paint){
@@ -112,6 +114,7 @@ class DrawView : View {
         quare.update(x,y,e_x,e_y,paint)
         invalidate()
     }
+
 
     //新しい線を引く
     fun DrawLine(  x : Float , y :Float ,e_x : Float , e_y : Float ,  paint : Paint){
@@ -179,6 +182,14 @@ class DrawView : View {
                         s_x = event.x
                         s_y = event.y
                     }
+                    Shape_ID.SHAPE_TEXT->{
+                        s_x = event.x
+                        s_y = event.y
+
+                        DrawText("text",s_x,s_y,paint)
+
+
+                    }
                     Shape_ID.SHAPE_PAINT->{
                         path.moveTo(event.x,event.y)
                         invalidate()
@@ -230,17 +241,18 @@ class DrawView : View {
                         invalidate()
                     }
                     Shape_ID.SHAPE_QUARE->{
-                        e_x = event.x
-                        e_y = event.y
-                        if( isDropMove == false){
-                            DrawQuare(s_x,s_y,s_x,s_y,paint)
-                            isDropMove = true
-                        }else{
-                            var quare = listShape[listShape.size-1] as Quare
-                            UpdateQuare(quare  , s_x,s_y,e_x,e_y,paint)
-                        }
-
+                    e_x = event.x
+                    e_y = event.y
+                    if( isDropMove == false){
+                        DrawQuare(s_x,s_y,s_x,s_y,paint)
+                        isDropMove = true
+                    }else{
+                        var quare = listShape[listShape.size-1] as Quare
+                        UpdateQuare(quare  , s_x,s_y,e_x,e_y,paint)
                     }
+
+                }
+
                     Shape_ID.SHAPE_OVAL->{
                         e_x = event.x
                         e_y = event.y

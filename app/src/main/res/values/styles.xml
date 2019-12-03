@@ -11,6 +11,11 @@
         <item name="windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
+        <!--テキスト選択時デザイン・edittextデザイン-->
+        <item name="colorControlActivated">#a3a3a2</item>
+        <item name="android:textColorHighlight">#a3a3a2</item>
+        <item name="colorControlNormal">#726250</item>
+        <item name="android:textColorHint">#726250</item>
     </style>
 
 </resources>

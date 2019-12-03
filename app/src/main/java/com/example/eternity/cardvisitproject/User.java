@@ -1,21 +1,18 @@
 package com.example.eternity.cardvisitproject;
 
-import java.util.List;
-
 public class User {
     private String name ;
     private int phone_number ;
     private String address ;
     private String e_mail ;
-    private List<String> sns;
+    private String sns;
     private String company_name;
     private String company_adress ;
     private String position ;
     private int fax ;
     private  String company_url;
-    private int iamge ;
 
-    public User(String name, int phone_number, String address, String e_mail, List<String> sns, String company_name, String company_adress, String position, int fax, String company_url, int iamge) {
+    public User(String name, int phone_number, String address, String e_mail, String sns, String company_name, String company_adress, String position, int fax, String company_url) {
         this.name = name;
         this.phone_number = phone_number;
         this.address = address;
@@ -26,7 +23,6 @@ public class User {
         this.position = position;
         this.fax = fax;
         this.company_url = company_url;
-        this.iamge = iamge;
     }
 
     public String getName() {
@@ -61,13 +57,6 @@ public class User {
         this.e_mail = e_mail;
     }
 
-    public List<String> getSns() {
-        return sns;
-    }
-
-    public void setSns(List<String> sns) {
-        this.sns = sns;
-    }
 
     public String getCompany_name() {
         return company_name;
@@ -109,11 +98,5 @@ public class User {
         this.company_url = company_url;
     }
 
-    public int getIamge() {
-        return iamge;
-    }
 
-    public void setIamge(int iamge) {
-        this.iamge = iamge;
-    }
 }

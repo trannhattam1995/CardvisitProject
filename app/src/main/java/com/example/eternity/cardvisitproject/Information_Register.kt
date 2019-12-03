@@ -12,8 +12,6 @@ class Information_Register : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_information__register)
 
-
-
         back_bt.setOnClickListener({
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

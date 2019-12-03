@@ -5,7 +5,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Information_Register">
+        tools:context=".Information_Register"
+        >
 
     <LinearLayout
             android:orientation="vertical"
@@ -23,32 +24,40 @@
                 android:layout_height="match_parent"
                 android:inputType="textPersonName"
                 android:ems="10" android:layout_weight="1" android:hint="名前を入力してください"
-                android:gravity="center_vertical|center_horizontal"/>
+                android:gravity="center_vertical|center_horizontal"
+                android:maxLines="1"/>
         <EditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textEmailAddress"
-                android:ems="10" android:layout_weight="1" android:hint="メールアドレスを入力してください"/>
+                android:ems="10" android:layout_weight="1" android:hint="メールアドレスを入力してください"
+                android:gravity="center_vertical|center_horizontal"
+                android:maxLines="1"/>
         <EditText
                 android:id="@+id/phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textNoSuggestions|phone"
-                android:ems="10" android:layout_weight="1" android:hint="電話番号を入力してください"/>
+                android:ems="10" android:layout_weight="1" android:hint="電話番号を入力してください"
+                android:gravity="center_vertical|center_horizontal"
+                android:maxLines="1"/>
         <EditText
                 android:id="@+id/sns"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textMultiLine"
-                android:ems="10" android:layout_weight="1" android:hint="snsを入力してください"/>
+                android:ems="10" android:layout_weight="1" android:hint="snsを入力してください"
+                android:gravity="center_vertical|center_horizontal"
+                android:maxLines="1"/>
         <EditText
                 android:id="@+id/position"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPersonName"
                 android:ems="10" android:layout_weight="1" android:hint="役割を入力してください"
-                android:gravity="center_vertical|center_horizontal"/>
+                android:gravity="center_vertical|center_horizontal"
+                android:maxLines="1"/>
         <EditText
                 android:id="@+id/department"
                 android:layout_width="match_parent"
@@ -63,26 +72,43 @@
                 android:inputType="textPersonName"
                 android:ems="10" android:layout_weight="1" android:hint="住所を入力してください"
                 android:gravity="center_vertical|center_horizontal"/>
+
         <EditText
                 android:id="@+id/company_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPersonName"
-                android:ems="10" android:layout_weight="1" android:hint="会社名を入力してください"
-                android:gravity="center_vertical|center_horizontal"/>
+                android:ems="10"
+                android:layout_weight="1"
+                android:hint="会社名を入力してください"
+                android:gravity="center_vertical|center_horizontal"
+                android:scrollbarSize="8dp"
+                android:maxLines="1"/>
+
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" android:layout_weight="1" android:weightSum="1"
-                tools:layout_editor_absoluteX="8dp" tools:layout_editor_absoluteY="8dp">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:weightSum="1"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp">
+
             <ImageButton
                     android:id="@+id/back_bt"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_weight="1" app:srcCompat="@mipmap/ic_launcher"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#769164"
+                    app:srcCompat="@android:drawable/ic_menu_revert" />
+
             <ImageButton
                     android:id="@+id/register_bt"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_weight="1" app:srcCompat="@mipmap/ic_launcher"/>
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#888084"
+                    app:srcCompat="@android:drawable/checkbox_on_background" />
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
