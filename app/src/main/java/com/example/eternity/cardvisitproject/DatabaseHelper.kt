@@ -5,7 +5,6 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.eternity.cardvisitproject.R.id.*
 
 public class DatabaseHelper : SQLiteOpenHelper{
 
@@ -66,14 +65,7 @@ public class DatabaseHelper : SQLiteOpenHelper{
         onCreate(db!!)
     }
 
-    //CardVisit情報を追加
-    fun SaveCardData(sqLiteDatabase: SQLiteDatabase ,cardVisit: CardVisit){
-        var contentValues : ContentValues = ContentValues()
-        contentValues.put(CARDTABLE_COL_FRONT_IMG , cardVisit.front_img)
-        contentValues.put(CARDTABLE_COL_BACK_IMG , cardVisit.back_img)
-        contentValues.put(CARDTABLE_COL_USER_ID , cardVisit.user_id)
-        sqLiteDatabase.insert(CARDVISITTABLENAME , null , contentValues)
-    }
+
 
     //User情報を追加
     fun SavaUser(sqLiteDatabase: SQLiteDatabase , user: User){
@@ -88,22 +80,6 @@ public class DatabaseHelper : SQLiteOpenHelper{
         contentValues.put(USERTABLE_COL_EMAIL , user.e_mail)
 
         sqLiteDatabase.insert(USERTABLENAME , null , contentValues)
-    }
-
-    fun GetAllCardVisit(sqLiteDatabase: SQLiteDatabase) : ArrayList<CardVisit>{
-        var arrayList : ArrayList<CardVisit> = ArrayList()
-        var query : String = "SELECT * FROM " + CARDVISITTABLENAME + " ;"
-        var cursor : Cursor = sqLiteDatabase.rawQuery(query , null)
-        while (cursor.moveToNext()){
-            var front_img : String = cursor.getString(cursor.getColumnIndex(CARDTABLE_COL_FRONT_IMG))
-            var back_img : String = cursor.getString(cursor.getColumnIndex(CARDTABLE_COL_BACK_IMG))
-            var user_id : String = cursor.getString(cursor.getColumnIndex(CARDTABLE_COL_USER_ID))
-            var cardVisit : CardVisit = CardVisit(front_img , back_img , user_id.toInt())
-            arrayList.add(cardVisit)
-        }
-        cursor.close()
-
-        return arrayList
     }
 
     fun GetAllUser(sqLiteDatabase: SQLiteDatabase) : ArrayList<User>{

@@ -1,35 +1,20 @@
 package com.example.eternity.cardvisitproject
 
-import android.app.AlertDialog
-import android.app.Dialog
-import android.app.PendingIntent.getActivity
+//import android.support.v4.app.SupportActivity
+//import android.support.v4.app.SupportActivity.ExtraData
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.util.TypedValue
-import android.view.MotionEvent
-import android.view.View
-import android.widget.*
-import kotlinx.android.synthetic.main.activity_information__register.*
-import kotlinx.android.synthetic.main.activity_update__cardvisit.*
-import org.w3c.dom.Text
-import android.graphics.Typeface
-import android.widget.TextView
-//import android.support.v4.app.SupportActivity
-//import android.support.v4.app.SupportActivity.ExtraData
-import android.support.v4.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.support.v4.app.SupportActivity
-import android.support.v4.app.SupportActivity.ExtraData
-import android.support.v4.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.support.v7.app.AppCompatActivity
 import android.util.Base64
-import com.example.eternity.cardvisitproject.R.id.*
+import android.view.View
+import android.widget.AdapterView
+import android.widget.SeekBar
+import android.widget.Spinner
+import kotlinx.android.synthetic.main.activity_update__cardvisit.*
 import java.io.ByteArrayOutputStream
 
 /*class KeyValuePair(key: String, value: String) : Pair<String, String>(key, value) {
@@ -196,9 +181,9 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
                 var data = byteArrayOutputStream.toByteArray()
                 val imageEncoded = Base64.encodeToString(data, Base64.DEFAULT)
 
-                var preference  = getSharedPreferences("cardImage" , Context.MODE_PRIVATE)
+                var preference  = getSharedPreferences("CARDVISIT" , Context.MODE_PRIVATE)
                 var editor = preference.edit()
-                editor.putString("image" , imageEncoded)
+                editor.putString("FRONT_IMG" , imageEncoded)
                 editor.commit()
                 var intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)

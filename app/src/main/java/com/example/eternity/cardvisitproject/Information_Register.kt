@@ -25,9 +25,12 @@ class Information_Register : AppCompatActivity() {
     }
 
     private fun saveMyProfile() {
-        var preference  = getSharedPreferences("cardImage" , Context.MODE_PRIVATE)
+        var preference  = getSharedPreferences("CARDVISIT" , Context.MODE_PRIVATE)
         var editor = preference.edit()
-        editor.putString("phone" , phone_number.text.toString())
+        editor.putString("NAME" , name.text.toString())
+        editor.putString("COMPANY_NAME" , company_name.text.toString())
+        editor.putString("POSITION" , position.text.toString())
+        editor.putString("PHONE_NUMBER" , phone_number.text.toString())
         editor.commit()
     }
 }

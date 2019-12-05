@@ -6,9 +6,8 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Base64
-import android.widget.ArrayAdapter
+import android.util.Log
 import android.widget.ImageView
-import android.widget.Toast
 import io.socket.client.IO
 import kotlinx.android.synthetic.main.activity_card__change.*
 import org.json.JSONArray
@@ -20,10 +19,13 @@ class Card_ChangeActivity : AppCompatActivity() {
     var socket : io.socket.client.Socket? = null
     //var URL = "http://192.168.0.13:3000"
     var URL = "http://172.30.27.194:3000"
-    var SEVER = "RITSUKO-PC"
 
-    var user : User? = null
     var selected_user : String? = null
+    ///自分の名刺
+    var myCardVisit : CardVisit? = null
+
+    ///近くに居るユーザ情報リスト
+    var list_cardvist : ArrayList<CardVisit>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,20 +82,24 @@ class Card_ChangeActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        var preference  = getSharedPreferences("cardImage" , Context.MODE_PRIVATE)
-        var img_decode : String = preference.getString("image" , "")
-        var byte = Base64.decode( img_decode.toByteArray() , Base64.DEFAULT)
-        var id : String = preference.getString("id","1")
-        var name : String = preference.getString("name" , "test2")
-        var phone : String = preference.getString("phone" , "0")
-        var address : String = preference.getString("address" , "")
-        var email : String = preference.getString("email" , "")
-        var sns : String = preference.getString("sns" , "")
-        var company_name : String = preference.getString("company_name" , "")
-        var position : String = preference.getString("sns" , "")
-        var company_url : String = preference.getString("company_name" , "")
+        /*** SharePreference から情報を取得 ***/
+        var preference  = getSharedPreferences("CARDVISIT" , Context.MODE_PRIVATE)
+        var front_img : String = preference.getString("FRONT_IMG" , "")
+        var back_img : String = preference.getString("BACK_IMG" , "")
+        var front_img_tobyte = Base64.decode( front_img.toByteArray() , Base64.DEFAULT)
+        var id : String = preference.getString("ID","1")
+        var name : String = preference.getString("NAME" , "")
+        var phone_number : String = preference.getString("PHONE_NUMBER" , "0")
+        var address : String = preference.getString("ADRESS" , "")
+        var email : String = preference.getString("EMAIL" , "")
+        var sns : String = preference.getString("SNS" , "")
+        var company_name : String = preference.getString("COMPNAY_NAME" , "")
+        var position : String = preference.getString("POSITION" , "")
+        var company_url : String = preference.getString("COMPANY_URL" , "")
 
-        user = User(id.toInt() ,name ,phone.toInt() ,address , email , company_name ,position , company_url)
+        /// 自分の名刺インスタンスを生成
+        myCardVisit = CardVisit(front_img , back_img ,name , phone_number.toInt() , address ,email , company_name , position , company_url )
+
         // 名刺を交換する処理
         var users : ArrayList<String> = ArrayList()
 
@@ -101,14 +107,30 @@ class Card_ChangeActivity : AppCompatActivity() {
         socket = IO.socket(URL)
         socket!!.connect()
 
-        var data : JSONObject = JSONObject()
-        data.put("phone_number", user!!.phone_number.toString())
-        data.put("name", user!!.name)
-        socket!!.emit("find_user" , data)
+        /// 自分の名刺オブジェクトをJsonオブジェクトに変換
+        var myCardVisitJson : JSONObject = JSONObject()
+        myCardVisitJson.put("FRONT_IMG", myCardVisit!!.front_img)
+        myCardVisitJson.put("BACK_IMG", myCardVisit!!.back_img)
+        myCardVisitJson.put("ID", myCardVisit!!.id)
+        myCardVisitJson.put("NAME", myCardVisit!!.name)
+        myCardVisitJson.put("PHONE_NUMBER", myCardVisit!!.phone_number)
+        myCardVisitJson.put("ADDRESS", myCardVisit!!.address)
+        myCardVisitJson.put("EMAIL", myCardVisit!!.email)
+        myCardVisitJson.put("COMPANY_NAME", myCardVisit!!.company_name)
+        myCardVisitJson.put("POSITION", myCardVisit!!.position)
+        myCardVisitJson.put("COMPANY_URL", myCardVisit!!.company_url)
+        //リクエスト時の時刻とGPS情報
+        myCardVisitJson.put("REQUEST_TIME", 0)
+        myCardVisitJson.put("GPS", 0)
+        ///サーバに近くに居るユーザを検索イベント
+        socket!!.emit("FIND_USER" , myCardVisitJson)
 
-        var adapter : ArrayAdapter<String> = ArrayAdapter(this,android.R.layout.simple_list_item_1, users)
+        // 近くに居るユーザ一覧のアダプタ
+        list_cardvist = ArrayList()
+        var adapter : CardVisitListViewAdapter = CardVisitListViewAdapter(this,list_cardvist)
         users_list.adapter = adapter
 
+        //名刺を交換する処理
         send_card_bt.setOnClickListener({
             var dialog : Dialog = Dialog(this)
             dialog.setTitle("test")
@@ -116,26 +138,37 @@ class Card_ChangeActivity : AppCompatActivity() {
             var receive_card_img = dialog.findViewById<ImageView>(R.id.receive_card_img)
             receive_card_img.setOnClickListener({
                 var sendData : JSONObject = JSONObject()
-                sendData.put("sendto" , selected_user)
-                sendData.put("mycard" ,img_decode )
+                sendData.put("SENDTO_USER" , selected_user)
 
-                socket!!.emit("send_cardvisit" , sendData)
+                socket!!.emit("SEND_CARDVISIT" , sendData)
                 dialog.dismiss()
             })
-            var byte = Base64.decode( img_decode.toByteArray() , Base64.DEFAULT)
-            receive_card_img.setImageBitmap( BitmapFactory.decodeByteArray(byte , 0 , byte.size))
+            receive_card_img.setImageBitmap( BitmapFactory.decodeByteArray(front_img_tobyte , 0 , front_img_tobyte.size))
             dialog.window.attributes.windowAnimations = R.style.DialogAnimation_up_bottom;
             dialog.show()
         })
 
-        socket!!.on("user-data" , {args -> var receiver_data = args[0].toString()
+        /// サーバからユーザ一覧の情報のレポンストを受け取る
+        socket!!.on("USER_DATA" , {args -> var receiver_data = args[0].toString()
             runOnUiThread {
                 var listUser : JSONArray = JSONArray(receiver_data)
+
                 adapter.clear()
                 for( i in 0..listUser.length()-1){
                     var jsonObject = listUser.getJSONObject(i)
-                    if(jsonObject.getString("phone_number").toInt() != user!!.phone_number){
-                        adapter.add(jsonObject.getString("phone_number"))
+                    var front_img = jsonObject.getString("front_img")
+                    var back_img = jsonObject.getString("back_img")
+                    var name = jsonObject.getString("name")
+                    var phone_number = jsonObject.getString("phone_number")
+//                    var address = jsonObject.getString("address")
+                    var adress = ""
+                    var email = jsonObject.getString("email")
+                    var company_name = jsonObject.getString("company_name")
+                    var position = jsonObject.getString("position")
+                    var company_url = jsonObject.getString("company_url")
+                    var cardvisit : CardVisit = CardVisit(front_img , back_img ,name , phone_number.toInt() , address ,email , company_name , position , company_url)
+                    if(jsonObject.getString("phone_number").toInt() != myCardVisit!!.phone_number){
+                        adapter.add(cardvisit)
                     }
 
                 }
@@ -143,15 +176,16 @@ class Card_ChangeActivity : AppCompatActivity() {
             }
         })
 
-        socket!!.on("card-data" , {args -> var receiver_data = args[0] as JSONObject
+        socket!!.on("CARD_DATA" , {args -> var cardVisitJson = args[0] as JSONObject
             runOnUiThread {
 
-                var card_img : String = receiver_data.getString("data")
+                var font_img = cardVisitJson.getString("front_img")
+                Log.d("card_img " , font_img)
                 var dialog : Dialog = Dialog(this)
                 dialog.setTitle("test")
                 dialog.setContentView(R.layout.custom_receiver_card)
                 var receive_card_img = dialog.findViewById<ImageView>(R.id.receive_card_img)
-                var byte = Base64.decode( card_img.toByteArray() , Base64.DEFAULT)
+                var byte = Base64.decode( font_img.toByteArray() , Base64.DEFAULT)
                 receive_card_img.setImageBitmap( BitmapFactory.decodeByteArray(byte , 0 , byte.size))
                 dialog.window.attributes.windowAnimations = R.style.DialogAnimation_up_bottom;
                 dialog.show()
@@ -167,10 +201,7 @@ class Card_ChangeActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        var data : JSONObject = JSONObject()
-        data.put("phone_number", user!!.phone_number.toString())
-        Toast.makeText(this,user!!.phone_number.toString(),Toast.LENGTH_SHORT).show()
-        socket!!.emit("disconnect" , data)
+        socket!!.emit("disconnect" , "")
         socket!!.disconnect()
     }
 
