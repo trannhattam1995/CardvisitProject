@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.CheckBox
 import android.widget.TextView
 
 public class CardVisitListViewAdapter : BaseAdapter{
     var context : Context? = null
     var list_cardvisit : ArrayList<CardVisit>? = null
+    var selectedListCardVisit : ArrayList<CardVisit> = ArrayList()
 
     constructor(context: Context?, list_cardvisit: ArrayList<CardVisit>?) : super() {
         this.context = context
@@ -26,6 +28,14 @@ public class CardVisitListViewAdapter : BaseAdapter{
         name.text = list_cardvisit!![position].name
         var pos = convertView.findViewById<TextView>(R.id.position)
         pos.text = list_cardvisit!![position].position
+        var checkBox = convertView.findViewById<CheckBox>(R.id.check)
+        checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
+            if( isChecked == true){
+                selectedListCardVisit.add(list_cardvisit!![position])
+            }else{
+                selectedListCardVisit.remove(list_cardvisit!![position])
+            }
+        }
         return convertView
     }
 

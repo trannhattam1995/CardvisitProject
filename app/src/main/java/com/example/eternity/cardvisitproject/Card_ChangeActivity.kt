@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Base64
 import android.util.Log
 import android.widget.ImageView
+import android.widget.Toast
 import io.socket.client.IO
 import kotlinx.android.synthetic.main.activity_card__change.*
 import org.json.JSONArray
@@ -18,7 +19,7 @@ class Card_ChangeActivity : AppCompatActivity() {
 
     var socket : io.socket.client.Socket? = null
     //var URL = "http://192.168.0.13:3000"
-    var URL = "http://172.30.27.194:3000"
+    var URL = "http://169.254.151.248:3000"
 
     var selected_user : String? = null
     ///自分の名刺
@@ -130,6 +131,10 @@ class Card_ChangeActivity : AppCompatActivity() {
         var adapter : CardVisitListViewAdapter = CardVisitListViewAdapter(this,list_cardvist)
         users_list.adapter = adapter
 
+        users_list.setOnItemClickListener { parent, view, position, id ->
+
+        }
+
         //名刺を交換する処理
         send_card_bt.setOnClickListener({
             var dialog : Dialog = Dialog(this)
@@ -137,11 +142,18 @@ class Card_ChangeActivity : AppCompatActivity() {
             dialog.setContentView(R.layout.custom_receiver_card)
             var receive_card_img = dialog.findViewById<ImageView>(R.id.receive_card_img)
             receive_card_img.setOnClickListener({
-                var sendData : JSONObject = JSONObject()
-                sendData.put("SENDTO_USER" , selected_user)
+                if( adapter.selectedListCardVisit.size > 0){
+                    for(i in 0..adapter.selectedListCardVisit.size - 1){
+                        var sendData : JSONObject = JSONObject()
+                        var to_user_phone = adapter.selectedListCardVisit[i].phone_number
+                        sendData.put("SENDTO_USER" , to_user_phone)
+                        socket!!.emit("SEND_CARDVISIT" , sendData)
+                    }
+                    dialog.dismiss()
+                }else{
+                    Toast.makeText(this,"送信したいユーザを選択してください!" , Toast.LENGTH_SHORT ).show()
+                }
 
-                socket!!.emit("SEND_CARDVISIT" , sendData)
-                dialog.dismiss()
             })
             receive_card_img.setImageBitmap( BitmapFactory.decodeByteArray(front_img_tobyte , 0 , front_img_tobyte.size))
             dialog.window.attributes.windowAnimations = R.style.DialogAnimation_up_bottom;
@@ -178,14 +190,24 @@ class Card_ChangeActivity : AppCompatActivity() {
 
         socket!!.on("CARD_DATA" , {args -> var cardVisitJson = args[0] as JSONObject
             runOnUiThread {
-
-                var font_img = cardVisitJson.getString("front_img")
-                Log.d("card_img " , font_img)
+                var DIALOG_ANIMATION_STYLE = R.style.DialogAnimation_up_bottom
+                var front_img = cardVisitJson.getString("front_img")
+                Log.d("card_img " , front_img)
                 var dialog : Dialog = Dialog(this)
                 dialog.setTitle("test")
                 dialog.setContentView(R.layout.custom_receiver_card)
                 var receive_card_img = dialog.findViewById<ImageView>(R.id.receive_card_img)
-                var byte = Base64.decode( font_img.toByteArray() , Base64.DEFAULT)
+                var delete_bt = dialog.findViewById<ImageView>(R.id.delete_card_visit_bt)
+                var save_card_bt = dialog.findViewById<ImageView>(R.id.save_card_visit_bt)
+                delete_bt.setOnClickListener {
+                    var DIALOG_ANIMATION_STYLE = R.style.DialogAnimation_right_left
+                    dialog.dismiss()
+                }
+                save_card_bt.setOnClickListener {
+                    var DIALOG_ANIMATION_STYLE = R.style.DialogAnimation_right_left
+                    dialog.dismiss()
+                }
+                var byte = Base64.decode( front_img.toByteArray() , Base64.DEFAULT)
                 receive_card_img.setImageBitmap( BitmapFactory.decodeByteArray(byte , 0 , byte.size))
                 dialog.window.attributes.windowAnimations = R.style.DialogAnimation_up_bottom;
                 dialog.show()
