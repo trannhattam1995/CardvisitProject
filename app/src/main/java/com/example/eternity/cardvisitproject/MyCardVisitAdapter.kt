@@ -37,4 +37,8 @@ class MyCardVisitAdapter(private val myDataset: Array<String>) :
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = myDataset.size
+
+    interface OnItemClickListener{
+        fun onclick(username : String)
+    }
 }

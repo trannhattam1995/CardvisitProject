@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             tools:background="@android:color/darker_gray">
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="81dp" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp" android:weightSum="4"
+            android:background="@android:color/white" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+        <TextView
+                android:id="@+id/company_name"
+                android:text="会社名"
+                android:layout_width="match_parent" android:layout_height="match_parent"
+                android:layout_marginEnd="144dp" android:layout_marginRight="144dp" android:textSize="24sp"
+                android:layout_marginStart="8dp" android:layout_marginLeft="8dp" android:layout_marginTop="8dp"
+                android:layout_marginBottom="0dp"
+                android:textColor="@color/colorPrimaryDark" android:layout_weight="1"
+                android:layout_margin="0dp"
+                android:gravity="center_vertical|center_horizontal" app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.025" app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" tools:text="会社名"/>
+        <TextView
+                android:id="@+id/name"
+                android:text="名前"
+                android:layout_width="match_parent" android:layout_height="match_parent"
+                android:layout_marginEnd="144dp" android:layout_marginRight="144dp" android:textSize="24sp"
+                android:layout_marginBottom="224dp"
+                android:layout_marginStart="8dp" android:layout_marginLeft="8dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1" android:layout_margin="0dp"
+                android:gravity="center_vertical|center_horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/company_name"
+                app:layout_constraintTop_toBottomOf="@+id/company_name"
+                app:layout_constraintVertical_bias="0.0" tools:text="名前"/>
+        <TextView
+                android:id="@+id/position"
+                android:text="役割"
+                android:layout_width="match_parent" android:layout_height="match_parent"
+                android:textSize="24sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_marginTop="8dp" android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp" android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp" android:layout_weight="1"
+                android:layout_margin="0dp" android:gravity="center_vertical|center_horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/name" app:layout_constraintTop_toBottomOf="@+id/name"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="役割"/>
+        <CheckBox
+                android:id="@+id/check"
+                android:text="選択"
+                android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal" android:padding="0dp"/>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
