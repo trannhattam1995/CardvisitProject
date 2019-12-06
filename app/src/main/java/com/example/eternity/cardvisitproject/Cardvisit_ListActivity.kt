@@ -24,7 +24,7 @@ class Cardvisit_ListActivity : AppCompatActivity() {
         var databaseHelper : DatabaseHelper = DatabaseHelper(applicationContext , "PROJECT_DATABASE" , null , 1 )
         var db : SQLiteDatabase = databaseHelper.writableDatabase
 
-        var user : User = User("aaa" ,12345 ,"test","test","test","test","test")
+        var user : User = User(0,"test" ,12345 ,"000","test","test","test","test")
         databaseHelper.SavaUser(db  , user)
 
         var arrayList : ArrayList<User> = ArrayList()
