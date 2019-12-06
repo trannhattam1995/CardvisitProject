@@ -19,7 +19,7 @@ class Card_ChangeActivity : AppCompatActivity() {
 
     var socket : io.socket.client.Socket? = null
     //var URL = "http://192.168.0.13:3000"
-    var URL = "http://169.254.151.248:3000"
+    var URL = "http://170.30.23.27:3000"
 
     var selected_user : String? = null
     ///自分の名刺
