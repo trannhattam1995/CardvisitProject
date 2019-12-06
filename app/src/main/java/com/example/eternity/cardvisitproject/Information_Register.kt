@@ -30,6 +30,7 @@ class Information_Register : AppCompatActivity() {
         editor.putString("NAME" , name.text.toString())
         editor.putString("COMPANY_NAME" , company_name.text.toString())
         editor.putString("POSITION" , position.text.toString())
+        
         editor.putString("PHONE_NUMBER" , phone_number.text.toString())
         editor.commit()
     }
