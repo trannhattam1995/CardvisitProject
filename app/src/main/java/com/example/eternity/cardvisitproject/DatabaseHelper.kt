@@ -12,20 +12,14 @@ public class DatabaseHelper : SQLiteOpenHelper{
     val CARD_TABLE_COL_ID : String = "ID"
     val CARDTABLE_COL_FRONT_IMG : String = "FRONT_IMG"
     val CARDTABLE_COL_BACK_IMG : String = "BACK_IMG"
-    val CARDTABLE_COL_USER_ID : String = "USER_ID"
-
-
-    val USERTABLENAME : String = "USER_TABLE"
-    val USERTABLE_COL_ID : String = "ID"
-    val USERTABLE_COL_NAME : String ="NAME"
-    val USERTABLE_COL_COMPANY_NAME : String = "COMPANY_NAME"
-    val USERTABLE_COL_FAX : String ="FAX"
-    val USERTABLE_COL_ADRESS : String = "ADRESS"
-    val USERTABLE_COL_POSITION : String ="POSITION"
-    val USERTABLE_COL_SNS : String = "SNS"
-    val USERTABLE_COL_COMPANY_URL : String ="COMPANY_URL"
-    val USERTABLE_COL_PHONE : String ="PHONE"
-    val USERTABLE_COL_EMAIL : String ="EMAIL"
+    val CARDTABLE_COL_USER_NAME : String = "USER_NAME"
+    val CARDTABLE_COL_USER_PHONE_NUMBER : String = "PHONE_NUMBER"
+    val CARDTABLE_COL_USER_ADDRESS : String = "USER_ADDRESS"
+    val CARDTABLE_COL_USER_EMAIL : String = "EMAIL"
+    val CARDTABLE_COL_USER_SNS : String = "SNS"
+    val CARDTABLE_COL_USER_COMPANY_NAME : String = "COMPANY_NAME"
+    val CARDTABLE_COL_USER_POSITION : String = "POSITION"
+    val CARDTABLE_COL_USER_COMPANY_URL : String = "USER_COMPANY_URL"
 
 
     constructor(context: Context?, name: String?, factory: SQLiteDatabase.CursorFactory?, version: Int) : super(
@@ -36,67 +30,62 @@ public class DatabaseHelper : SQLiteOpenHelper{
     )
 
     override fun onCreate(db: SQLiteDatabase?) {
-        db!!.execSQL("CREATE TABLE " + USERTABLENAME + " "
-                + "( "
-                + USERTABLE_COL_ID +  " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + USERTABLE_COL_NAME +  " TEXT, "
-                + USERTABLE_COL_COMPANY_NAME +  " TEXT, "
-                + USERTABLE_COL_ADRESS +  " TEXT, "
-                + USERTABLE_COL_POSITION +  " TEXT, "
-                + USERTABLE_COL_SNS +  " TEXT, "
-                + USERTABLE_COL_COMPANY_URL +  " TEXT, "
-                + USERTABLE_COL_PHONE +  " TEXT, "
-                + USERTABLE_COL_EMAIL +  " TEXT "
-                + ")" )
 
         db!!.execSQL("CREATE TABLE " + CARDVISITTABLENAME + " "
                 + "( "
                 + CARD_TABLE_COL_ID +  " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + CARDTABLE_COL_FRONT_IMG +  " TEXT, "
                 + CARDTABLE_COL_BACK_IMG +  " TEXT, "
-                + CARDTABLE_COL_USER_ID +  " INTEGER, "
-                + "FOREIGN KEY ("+CARDTABLE_COL_USER_ID+") REFERENCES "+USERTABLENAME+" ("+USERTABLE_COL_ID+"));"
+                + CARDTABLE_COL_USER_NAME +  " TEXT, "
+                + CARDTABLE_COL_USER_PHONE_NUMBER +  " TEXT, "
+                + CARDTABLE_COL_USER_ADDRESS +  " TEXT, "
+                + CARDTABLE_COL_USER_EMAIL +  " TEXT, "
+                + CARDTABLE_COL_USER_SNS +  " TEXT, "
+                + CARDTABLE_COL_USER_COMPANY_NAME +  " TEXT, "
+                + CARDTABLE_COL_USER_POSITION +  " TEXT, "
+                + CARDTABLE_COL_USER_COMPANY_URL +  " TEXT "
                 + ")" )
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db!!.execSQL("DROP TABLE IF EXISTS " + USERTABLENAME)
         db!!.execSQL("DROP TABLE IF EXISTS " + CARDVISITTABLENAME)
         onCreate(db!!)
     }
 
+    fun addCardVisit(sqLiteDatabase: SQLiteDatabase , cardVisit: CardVisit){
+        var content : ContentValues = ContentValues()
+        content.put(CARDTABLE_COL_FRONT_IMG , cardVisit.front_img)
+        content.put(CARDTABLE_COL_BACK_IMG , cardVisit.back_img)
+        content.put(CARDTABLE_COL_USER_NAME , cardVisit.name)
+        content.put(CARDTABLE_COL_USER_PHONE_NUMBER , cardVisit.phone_number)
+        content.put(CARDTABLE_COL_USER_ADDRESS , cardVisit.address)
+        content.put(CARDTABLE_COL_USER_EMAIL , cardVisit.email)
+        content.put(CARDTABLE_COL_USER_SNS , cardVisit.sns)
+        content.put(CARDTABLE_COL_USER_COMPANY_NAME , cardVisit.company_name)
+        content.put(CARDTABLE_COL_USER_POSITION , cardVisit.position)
+        content.put(CARDTABLE_COL_USER_COMPANY_URL , cardVisit.company_url)
 
-
-    //User情報を追加
-    fun SavaUser(sqLiteDatabase: SQLiteDatabase , user: User){
-        var contentValues : ContentValues = ContentValues()
-        contentValues.put(USERTABLE_COL_NAME , user.name)
-        contentValues.put(USERTABLE_COL_COMPANY_NAME , user.company_name)
-        contentValues.put(USERTABLE_COL_ADRESS , user.address)
-        contentValues.put(USERTABLE_COL_POSITION , user.position)
-        contentValues.put(USERTABLE_COL_SNS , "test")
-        contentValues.put(USERTABLE_COL_COMPANY_URL , user.company_url)
-        contentValues.put(USERTABLE_COL_PHONE , user.phone_number)
-        contentValues.put(USERTABLE_COL_EMAIL , user.e_mail)
-
-        sqLiteDatabase.insert(USERTABLENAME , null , contentValues)
+        sqLiteDatabase.insertOrThrow(CARDVISITTABLENAME, null, content)
     }
 
-    fun GetAllUser(sqLiteDatabase: SQLiteDatabase) : ArrayList<User>{
-        var arrayList : ArrayList<User> = ArrayList()
-        var query : String = "SELECT * FROM " + USERTABLENAME + " ;"
+    fun GetAllUser(sqLiteDatabase: SQLiteDatabase) : ArrayList<CardVisit>{
+        var arrayList : ArrayList<CardVisit> = ArrayList()
+        var query : String = "SELECT * FROM " + CARDVISITTABLENAME + " ;"
         var cursor : Cursor = sqLiteDatabase.rawQuery(query , null)
         while (cursor.moveToNext()){
-            var id : String = cursor.getString(cursor.getColumnIndex(USERTABLE_COL_ID))
-            var name : String = cursor.getString(cursor.getColumnIndex(USERTABLE_COL_NAME))
-            var phone : String = cursor.getString(cursor.getColumnIndex(USERTABLE_COL_PHONE))
-            var adress : String = cursor.getString(cursor.getColumnIndex(CARDTABLE_COL_USER_ID))
-            var email : String = cursor.getString(cursor.getColumnIndex(USERTABLE_COL_EMAIL))
-            var company_name : String = cursor.getString(cursor.getColumnIndex(USERTABLE_COL_COMPANY_NAME))
-            var position : String = cursor.getString(cursor.getColumnIndex(USERTABLE_COL_POSITION))
-            var company_url : String = cursor.getString((cursor.getColumnIndex(USERTABLE_COL_COMPANY_URL)))
-            var user : User = User(id.toInt() , name , phone.toInt() ,adress ,email ,company_name ,position  , company_url)
-            arrayList.add(user)
+            var id : String = cursor.getString(cursor.getColumnIndex(CARD_TABLE_COL_ID))
+            var front_img : String = cursor.getString(cursor.getColumnIndex(CARDTABLE_COL_FRONT_IMG))
+            var back_img : String = cursor.getString(cursor.getColumnIndex(CARDTABLE_COL_BACK_IMG))
+            var name : String = cursor.getString(cursor.getColumnIndex(CARDTABLE_COL_USER_NAME))
+            var phone : String = cursor.getString(cursor.getColumnIndex(CARDTABLE_COL_USER_PHONE_NUMBER))
+            var adress : String = cursor.getString(cursor.getColumnIndex(CARDTABLE_COL_USER_ADDRESS))
+            var email : String = cursor.getString(cursor.getColumnIndex(CARDTABLE_COL_USER_EMAIL))
+            var sns : String = cursor.getString(cursor.getColumnIndex(CARDTABLE_COL_USER_SNS))
+            var company_name : String = cursor.getString(cursor.getColumnIndex(CARDTABLE_COL_USER_COMPANY_NAME))
+            var position : String = cursor.getString(cursor.getColumnIndex(CARDTABLE_COL_USER_POSITION))
+            var company_url : String = cursor.getString((cursor.getColumnIndex(CARDTABLE_COL_USER_COMPANY_URL)))
+            var cardVisit : CardVisit = CardVisit(front_img , back_img ,  name , phone.toInt() ,adress ,email ,company_name ,position  , company_url)
+            arrayList.add(cardVisit)
         }
         cursor.close()
 

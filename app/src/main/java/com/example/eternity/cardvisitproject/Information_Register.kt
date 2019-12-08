@@ -13,7 +13,7 @@ class Information_Register : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_information__register)
 
-        sharedPreferences = getSharedPreferences("CARD_VISIT", Context.MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("CARDVISIT", Context.MODE_PRIVATE)
 
         var name_d = sharedPreferences.getString("NAME","")
         name.setText(name_d)

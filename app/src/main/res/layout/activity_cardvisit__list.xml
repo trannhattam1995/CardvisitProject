@@ -7,16 +7,27 @@
         android:layout_height="match_parent"
         tools:context=".Cardvisit_ListActivity">
 
-    <LinearLayout
-            android:orientation="horizontal"
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/cardVisitRecylerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" android:layout_marginTop="8dp"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp" android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent">
-        <android.support.v7.widget.RecyclerView
-                android:id="@+id/cardVisitRecylerView"
-                android:layout_width="match_parent" android:layout_height="match_parent"/>
-    </LinearLayout>
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+            android:id="@+id/add_cardvisit_bt"
+            android:layout_width="76dp"
+            android:layout_height="90dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.971"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.059"
+            app:srcCompat="@drawable/more" />
+
 </android.support.constraint.ConstraintLayout>
