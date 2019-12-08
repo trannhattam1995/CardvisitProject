@@ -19,7 +19,7 @@ class Information_Register : AppCompatActivity() {
 
         register_bt.setOnClickListener({
             saveMyProfile()
-            val intent = Intent(this, Update_CardvisitActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         })
     }
