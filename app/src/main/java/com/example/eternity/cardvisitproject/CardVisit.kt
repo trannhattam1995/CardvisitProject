@@ -8,7 +8,7 @@ public class CardVisit{
     var phone_number: Int = 0
     var address: String? = null
     var email: String? = null
-    val sns: String? = null
+    var sns: String? = null
     var company_name: String? = null
     var position: String? = null
     var company_url: String? = null
@@ -20,6 +20,7 @@ public class CardVisit{
         phone_number: Int,
         address: String?,
         email: String?,
+        sns: String?,
         company_name: String?,
         position: String?,
         company_url: String?
@@ -30,6 +31,7 @@ public class CardVisit{
         this.phone_number = phone_number
         this.address = address
         this.email = email
+        this.sns = sns
         this.company_name = company_name
         this.position = position
         this.company_url = company_url

@@ -1,13 +1,16 @@
 package com.example.eternity.cardvisitproject
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.hardware.Camera
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.widget.FrameLayout
+import android.widget.ImageButton
 
 class CameraActivity : AppCompatActivity() {
 
@@ -54,6 +57,24 @@ class CameraActivity : AppCompatActivity() {
                 val preview: FrameLayout = findViewById(R.id.camera_preview)
                 preview.addView(it)
             }
+
+            val captureButton: ImageButton = findViewById(R.id.button_capture)
+            captureButton.setOnClickListener {
+                // get an image from the camera
+                mCamera?.takePicture(null, null, mPicture)
+            }
+        }
+    }
+
+    private val mPicture = Camera.PictureCallback { data, _ ->
+
+        var bitmap : Bitmap
+        try{
+            var intent : Intent = Intent(this , RegisterNewCardVisitActivity::class.java)
+            intent.putExtra("picture" , data)
+            startActivity(intent)
+        }catch (ex: Exception){
+
         }
     }
 

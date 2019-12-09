@@ -4,40 +4,51 @@
                                              xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
                                              android:layout_height="match_parent">
 
-    <ImageView
-            android:id="@+id/receive_card_img"
-            android:layout_width="384dp" android:layout_height="293dp" android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@android:color/darker_gray"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp" android:layout_marginLeft="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+    <LinearLayout
+            android:layout_width="493dp"
+            android:layout_height="279dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.509"
-            app:srcCompat="@drawable/tenp1"/>
-    <ImageView
-            android:id="@+id/delete_card_visit_bt"
-            android:layout_width="57dp" android:layout_height="53dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp" android:background="@android:color/darker_gray"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.046" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.539"
-            app:srcCompat="@android:drawable/ic_delete"/>
-    <ImageView
-            android:id="@+id/save_card_visit_bt"
-            android:layout_width="60dp" android:layout_height="53dp"
-            android:background="@android:color/darker_gray"
-            android:layout_marginTop="8dp" android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp" android:layout_marginLeft="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.539"
-            app:srcCompat="@android:drawable/ic_input_add"/>
+            app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+                android:id="@+id/delete_card_visit_bt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="3"
+                android:background="@android:color/darker_gray"
+                app:srcCompat="@android:drawable/ic_delete" />
+
+        <ImageView
+                android:id="@+id/receive_card_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:background="@android:color/darker_gray"
+                app:srcCompat="@drawable/tenp1" />
+
+        <ImageView
+                android:id="@+id/save_card_visit_bt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="3"
+                android:background="@android:color/darker_gray"
+                app:srcCompat="@android:drawable/ic_input_add" />
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

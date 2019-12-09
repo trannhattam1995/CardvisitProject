@@ -2,11 +2,11 @@ package com.example.eternity.cardvisitproject
 
 import android.app.Dialog
 import android.content.Context
+import android.database.sqlite.SQLiteDatabase
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Base64
-import android.util.Log
 import android.widget.ImageView
 import android.widget.Toast
 import io.socket.client.IO
@@ -18,10 +18,9 @@ import org.json.JSONObject
 class Card_ChangeActivity : AppCompatActivity() {
 
     var socket : io.socket.client.Socket? = null
-    //var URL = "http://192.168.0.13:3000"
-    var URL = "http://172.30.23.27:3000"
+    var URL = "http://192.168.0.13:3000"
+    //var URL = "http://172.30.23.27:3000"
 
-    var selected_user : String? = null
     ///自分の名刺
     var myCardVisit : CardVisit? = null
 
@@ -84,22 +83,29 @@ class Card_ChangeActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         /*** SharePreference から情報を取得 ***/
+
         var preference  = getSharedPreferences("CARDVISIT" , Context.MODE_PRIVATE)
-        var front_img : String = preference.getString("FRONT_IMG" , "")
-        var back_img : String = preference.getString("BACK_IMG" , "")
-        var front_img_tobyte = Base64.decode( front_img.toByteArray() , Base64.DEFAULT)
-        var id : String = preference.getString("ID","1")
-        var name : String = preference.getString("NAME" , "")
-        var phone_number : String = preference.getString("PHONE_NUMBER" , "0")
-        var address : String = preference.getString("ADRESS" , "")
-        var email : String = preference.getString("EMAIL" , "")
-        var sns : String = preference.getString("SNS" , "")
-        var company_name : String = preference.getString("COMPNAY_NAME" , "")
-        var position : String = preference.getString("POSITION" , "")
-        var company_url : String = preference.getString("COMPANY_URL" , "")
+        var front_img : String? = preference.getString("FRONT_IMG" , "")
+        var back_img : String? = preference.getString("BACK_IMG" , "")
+        var front_img_tobyte = Base64.decode( front_img!!.toByteArray() , Base64.DEFAULT)
+        var name : String? = preference.getString("NAME" , "")
+        var phone_number : String? = preference.getString("PHONE_NUMBER" , "0")
+        var address : String? = preference.getString("ADRESS" , "")
+        var email : String? = preference.getString("EMAIL" , "")
+        var sns : String? = preference.getString("SNS" , "")
+        var company_name : String? = preference.getString("COMPNAY_NAME" , "")
+        var position : String? = preference.getString("POSITION" , "")
+        var company_url : String? = preference.getString("COMPANY_URL" , "")
+
+        var phone : Int? = 0
+        try{
+            phone = phone_number!!.toInt()
+        }catch (e : Exception){
+            phone = 0
+        }
 
         /// 自分の名刺インスタンスを生成
-        myCardVisit = CardVisit(front_img , back_img ,name , phone_number.toInt() , address ,email , company_name , position , company_url )
+        myCardVisit = CardVisit(front_img , back_img ,name , phone_number!!.toInt() , address ,email , sns ,company_name , position , company_url )
 
         // 名刺を交換する処理
         var users : ArrayList<String> = ArrayList()
@@ -117,6 +123,7 @@ class Card_ChangeActivity : AppCompatActivity() {
         myCardVisitJson.put("PHONE_NUMBER", myCardVisit!!.phone_number)
         myCardVisitJson.put("ADDRESS", myCardVisit!!.address)
         myCardVisitJson.put("EMAIL", myCardVisit!!.email)
+        myCardVisitJson.put("SNS", myCardVisit!!.sns)
         myCardVisitJson.put("COMPANY_NAME", myCardVisit!!.company_name)
         myCardVisitJson.put("POSITION", myCardVisit!!.position)
         myCardVisitJson.put("COMPANY_URL", myCardVisit!!.company_url)
@@ -172,13 +179,13 @@ class Card_ChangeActivity : AppCompatActivity() {
                     var back_img = jsonObject.getString("back_img")
                     var name = jsonObject.getString("name")
                     var phone_number = jsonObject.getString("phone_number")
-//                    var address = jsonObject.getString("address")
-                    var adress = ""
+                    var address = jsonObject.getString("address")
                     var email = jsonObject.getString("email")
+                    var sns = jsonObject.getString("sns")
                     var company_name = jsonObject.getString("company_name")
                     var position = jsonObject.getString("position")
                     var company_url = jsonObject.getString("company_url")
-                    var cardvisit : CardVisit = CardVisit(front_img , back_img ,name , phone_number.toInt() , address ,email , company_name , position , company_url)
+                    var cardvisit : CardVisit = CardVisit(front_img , back_img ,name , phone_number.toInt() , address ,email , sns , company_name , position , company_url)
                     if(jsonObject.getString("phone_number").toInt() != myCardVisit!!.phone_number){
                         adapter.add(cardvisit)
                     }
@@ -192,19 +199,37 @@ class Card_ChangeActivity : AppCompatActivity() {
             runOnUiThread {
                 var DIALOG_ANIMATION_STYLE = R.style.DialogAnimation_up_bottom
                 var front_img = cardVisitJson.getString("front_img")
-                Log.d("card_img " , front_img)
+                var back_img = cardVisitJson.getString("back_img")
+                var name = cardVisitJson.getString("name")
+                var phone_number = cardVisitJson.getString("phone_number")
+                var address = cardVisitJson.getString("address")
+                var email = cardVisitJson.getString("email")
+                var sns = cardVisitJson.getString("sns")
+                var company_name = cardVisitJson.getString("company_name")
+                var position = cardVisitJson.getString("position")
+                var company_url = cardVisitJson.getString("company_url")
+                var cardvisit : CardVisit = CardVisit(front_img , back_img ,name , phone_number.toInt() , address ,email , sns , company_name , position , company_url)
+
+
                 var dialog : Dialog = Dialog(this)
                 dialog.setTitle("test")
                 dialog.setContentView(R.layout.custom_receiver_card)
                 var receive_card_img = dialog.findViewById<ImageView>(R.id.receive_card_img)
                 var delete_bt = dialog.findViewById<ImageView>(R.id.delete_card_visit_bt)
                 var save_card_bt = dialog.findViewById<ImageView>(R.id.save_card_visit_bt)
+                ///名刺を破棄する
                 delete_bt.setOnClickListener {
                     var DIALOG_ANIMATION_STYLE = R.style.DialogAnimation_right_left
                     dialog.dismiss()
                 }
+                ///名刺を保存する
                 save_card_bt.setOnClickListener {
                     var DIALOG_ANIMATION_STYLE = R.style.DialogAnimation_right_left
+                    var databaseHelper : DatabaseHelper = DatabaseHelper(applicationContext , "PROJECT_DATABASE" , null , 1 )
+                    var db : SQLiteDatabase = databaseHelper.writableDatabase
+                    databaseHelper.addCardVisit(db , cardvisit)
+                    db.close()
+                    dialog.window.attributes.windowAnimations = R.style.DialogAnimation_right_left
                     dialog.dismiss()
                 }
                 var byte = Base64.decode( front_img.toByteArray() , Base64.DEFAULT)
@@ -214,11 +239,6 @@ class Card_ChangeActivity : AppCompatActivity() {
             }
         })
 
-        users_list.setOnItemClickListener({parent,view ,position,id ->
-            selected_user = users[position]
-        })
-
-
     }
 
     override fun onDestroy() {
@@ -226,8 +246,6 @@ class Card_ChangeActivity : AppCompatActivity() {
         socket!!.emit("disconnect" , "")
         socket!!.disconnect()
     }
-
-
 
 }
 

@@ -1,6 +1,7 @@
 package com.example.eternity.cardvisitproject
 
 import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -27,22 +28,18 @@ class Cardvisit_ListActivity : AppCompatActivity() {
             startActivityForResult(intent , REQUEST_CODE_CAMERA_ACTIVITY)
         })
 
-        //Database
-//        var databaseHelper : DatabaseHelper = DatabaseHelper(applicationContext , "PROJECT_DATABASE" , null , 1 )
-//        var db : SQLiteDatabase = databaseHelper.writableDatabase
-//
-//        var user : User = User("aaa" ,12345 ,"test","test","test","test","test")
-//        databaseHelper.SavaUser(db  , user)
-//
-//        var arrayList : ArrayList<User> = ArrayList()
-//        arrayList = databaseHelper.GetAllUser(db)
-//        var testuser = arrayList.get(0)
-//        Toast.makeText(this , testuser.name , Toast.LENGTH_SHORT).show()
+        ///戻るボタン
+        back_cardvisit_bt.setOnClickListener({
+            finish()
+        })
+
+        var databaseHelper : DatabaseHelper = DatabaseHelper(applicationContext , "PROJECT_DATABASE" , null , 1 )
+        var db : SQLiteDatabase = databaseHelper.readableDatabase
+        var arrayList : ArrayList<CardVisit> = databaseHelper.GetAllCardvisit(db)
 
         viewManager = LinearLayoutManager(this , LinearLayout.HORIZONTAL , false)
-        var myDataset : Array<String> = Array<String>(10 ){"dadfa"}
 
-        viewAdapter = MyCardVisitAdapter(myDataset)
+        viewAdapter = MyCardVisitAdapter(arrayList)
 
         recyclerView = findViewById<RecyclerView>(R.id.cardVisitRecylerView).apply {
             // use this setting to improve performance if you know that changes

@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
 
     <application
@@ -17,6 +18,7 @@
             android:screenOrientation="landscape"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".RegisterNewCardVisitActivity"></activity>
         <activity android:name=".CameraActivity">
             android:screenOrientation="landscape">
             <!-- configure this activity to use landscape orientation -->
@@ -30,10 +32,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Update_CardvisitActivity"></activity>
-        <activity android:name=".Cardvisit_ListActivity"></activity>
-        <activity android:name=".Card_ChangeActivity"></activity>
-        <activity android:name=".Information_Register"></activity>
+        <activity android:name=".Update_CardvisitActivity" />
+        <activity android:name=".Cardvisit_ListActivity" />
+        <activity android:name=".Card_ChangeActivity" />
+        <activity android:name=".Information_Register" />
 
         <meta-data
                 android:name="preloaded_fonts"

@@ -68,7 +68,7 @@ public class DatabaseHelper : SQLiteOpenHelper{
         sqLiteDatabase.insertOrThrow(CARDVISITTABLENAME, null, content)
     }
 
-    fun GetAllUser(sqLiteDatabase: SQLiteDatabase) : ArrayList<CardVisit>{
+    fun GetAllCardvisit(sqLiteDatabase: SQLiteDatabase) : ArrayList<CardVisit>{
         var arrayList : ArrayList<CardVisit> = ArrayList()
         var query : String = "SELECT * FROM " + CARDVISITTABLENAME + " ;"
         var cursor : Cursor = sqLiteDatabase.rawQuery(query , null)
@@ -84,7 +84,7 @@ public class DatabaseHelper : SQLiteOpenHelper{
             var company_name : String = cursor.getString(cursor.getColumnIndex(CARDTABLE_COL_USER_COMPANY_NAME))
             var position : String = cursor.getString(cursor.getColumnIndex(CARDTABLE_COL_USER_POSITION))
             var company_url : String = cursor.getString((cursor.getColumnIndex(CARDTABLE_COL_USER_COMPANY_URL)))
-            var cardVisit : CardVisit = CardVisit(front_img , back_img ,  name , phone.toInt() ,adress ,email ,company_name ,position  , company_url)
+            var cardVisit : CardVisit = CardVisit(front_img , back_img ,  name , phone.toInt() ,adress ,email,sns ,company_name ,position  , company_url)
             arrayList.add(cardVisit)
         }
         cursor.close()
