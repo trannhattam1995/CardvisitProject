@@ -1,16 +1,26 @@
 package com.example.eternity.cardvisitproject
 
+///import android.support.v4.app.ActivityCompat
+//import android.support.v4.content.ContextCompat
+//import android.support.v7.app.AppCompatActivity
 import android.Manifest
-import android.content.Intent
+import android.app.Dialog
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.hardware.Camera
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.FrameLayout
 import android.widget.ImageButton
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.google.firebase.ml.vision.FirebaseVision
+import com.google.firebase.ml.vision.common.FirebaseVisionImage
+import com.google.firebase.ml.vision.objects.FirebaseVisionObjectDetectorOptions
 
 class CameraActivity : AppCompatActivity() {
 
@@ -20,9 +30,12 @@ class CameraActivity : AppCompatActivity() {
     /// カメラ権限のリクエストを受け取り番号
     private val MY_PERMISSIONS_REQUEST_CAMERA = 111
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
             != PackageManager.PERMISSION_GRANTED) {
@@ -58,6 +71,8 @@ class CameraActivity : AppCompatActivity() {
                 preview.addView(it)
             }
 
+
+
             val captureButton: ImageButton = findViewById(R.id.button_capture)
             captureButton.setOnClickListener {
                 // get an image from the camera
@@ -68,11 +83,63 @@ class CameraActivity : AppCompatActivity() {
 
     private val mPicture = Camera.PictureCallback { data, _ ->
 
-        var bitmap : Bitmap
         try{
-            var intent : Intent = Intent(this , RegisterNewCardVisitActivity::class.java)
-            intent.putExtra("picture" , data)
-            startActivity(intent)
+            mCamera!!.startPreview()
+
+            var bitmap : Bitmap = BitmapFactory.decodeByteArray(data,0,data.size)
+            var detectedBitmap : Bitmap? = null
+            val image = FirebaseVisionImage.fromBitmap(bitmap)
+            // Multiple object detection in static images
+            val options = FirebaseVisionObjectDetectorOptions.Builder()
+                .setDetectorMode(FirebaseVisionObjectDetectorOptions.SINGLE_IMAGE_MODE)
+                .enableMultipleObjects()
+                .enableClassification()  // Optional
+                .build()
+
+            // Or, to change the default settings:
+            val objectDetector = FirebaseVision.getInstance().getOnDeviceObjectDetector(options)
+
+            objectDetector.processImage(image)
+                .addOnSuccessListener { detectedObjects ->
+                    Log.d( "tracking object", "" + detectedObjects.size)
+                    // The list of detected objects contains one item if multiple object detection wasn't enabled.
+                    var object_text : String = ""
+                    for (obj in detectedObjects) {
+                        val id = obj.trackingId       // A number that identifies the object across images
+                        val bounds = obj.boundingBox  // The object's position in the image
+
+                        // If classification was enabled:
+                        val category = obj.classificationCategory
+                        val confidence = obj.classificationConfidence
+                        object_text += "" + id + " " + bounds + " " + category + " \n"
+
+                    }
+                    Log.d("tracking " , object_text)
+                    if( detectedObjects.size > 0){
+                        Log.d("track" , "in here")
+                        var obj = detectedObjects[0]
+                        var bounds = obj.boundingBox
+                        detectedBitmap = Bitmap.createBitmap(bitmap , bounds.centerX() - bounds.width() / 2  ,bounds.centerY() - bounds.height()/2 , bounds.width() , bounds.height() )
+                    }
+                }
+                .addOnFailureListener { e ->
+                    // Task failed with an exception
+                    // ...
+                }
+
+            var dialog : Dialog = Dialog(this)
+            dialog.setTitle("test")
+            dialog.setContentView(R.layout.custom_receiver_card)
+            var receive_card_img = dialog.findViewById<ImageView>(R.id.receive_card_img)
+            receive_card_img.setOnClickListener({
+                dialog.dismiss()
+            })
+            receive_card_img.setImageBitmap(detectedBitmap)
+            dialog.window.attributes.windowAnimations = R.style.DialogAnimation_up_bottom;
+            dialog.show()
+//            var intent : Intent = Intent(this , RegisterNewCardVisitActivity::class.java)
+//            intent.putExtra("picture" , data)
+//            startActivity(intent)
         }catch (ex: Exception){
 
         }

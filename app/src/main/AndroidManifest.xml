@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         package="com.example.eternity.cardvisitproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -10,6 +11,10 @@
 
     <uses-feature android:name="android.hardware.camera" />
 
+    <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="ocr" />
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -18,12 +23,9 @@
             android:screenOrientation="landscape"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".RegisterNewCardVisitActivity"></activity>
-        <activity android:name=".CameraActivity">
-            android:screenOrientation="landscape">
-            <!-- configure this activity to use landscape orientation -->
-
-        </activity>
+        <activity android:name=".Register_InformationActivity"></activity>
+        <activity android:name=".RegisterNewCardVisitActivity" />
+        <activity android:name=".CameraActivity"></activity>
         <activity android:name=".My_CardvisitActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

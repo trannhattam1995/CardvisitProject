@@ -4,16 +4,17 @@ package com.example.eternity.cardvisitproject
 //import android.support.v4.app.SupportActivity.ExtraData
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.util.Base64
 import android.view.View
 import android.widget.AdapterView
 import android.widget.SeekBar
 import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_update__cardvisit.*
 import java.io.ByteArrayOutputStream
 
@@ -33,9 +34,8 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update__cardvisit)
 
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         drawView = findViewById(R.id.DrawView)
-
         circle_bt.setOnClickListener(this)
         quare_bt.setOnClickListener(this)
         line_bt.setOnClickListener(this)
@@ -43,7 +43,6 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
         oval_bt.setOnClickListener(this)
         drag_bt.setOnClickListener(this)
         save_bt.setOnClickListener(this)
-        button.setOnClickListener(this)
 //        Fontsize_bt.setOnClickListener(){
 //            Fontsize_bt.setVisibility(View.GONE)
 //        }
@@ -189,9 +188,6 @@ class Update_CardvisitActivity : AppCompatActivity(),View.OnClickListener {
                 startActivity(intent)
             }
 
-            R.id.button ->{ /* サンプルテキスト表示ボタン */
-                drawView!!.shape_ID = Shape_ID.SHAPE_TEXT
-            }
         }
     }
 }

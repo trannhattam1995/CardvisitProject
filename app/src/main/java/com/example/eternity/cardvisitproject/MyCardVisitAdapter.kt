@@ -2,7 +2,6 @@ package com.example.eternity.cardvisitproject
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.support.v7.widget.RecyclerView
 import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +9,13 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.card_list_row.view.*
 
 class MyCardVisitAdapter(private val myDataset: ArrayList<CardVisit>) :
-    RecyclerView.Adapter<MyCardVisitAdapter.MyViewHolder>() {
+    androidx.recyclerview.widget.RecyclerView.Adapter<MyCardVisitAdapter.MyViewHolder>() {
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder.
     // Each data item is just a string in this case that is shown in a TextView.
-    class MyViewHolder(val convertView: View) : RecyclerView.ViewHolder(convertView)
+    class MyViewHolder(val convertView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(convertView)
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(parent: ViewGroup,

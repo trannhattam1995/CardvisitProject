@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_information__register.*
 
 class Information_Register : AppCompatActivity() {
@@ -75,12 +75,6 @@ class Information_Register : AppCompatActivity() {
     }
 
     private fun saveMyProfile() {
-//        var preference  = getSharedPreferences("CARDVISIT" , Context.MODE_PRIVATE)
-//        var editor = preference.edit()
-//        editor.putString("NAME" , name.text.toString())
-//        editor.putString("COMPANY_NAME" , company_name.text.toString())
-//        editor.putString("POSITION" , position.text.toString())
-//        editor.putString("PHONE_NUMBER" , phone_number.text.toString())
-//        editor.commit()
+
     }
 }

@@ -2,13 +2,14 @@ package com.example.eternity.cardvisitproject
 
 import android.app.Dialog
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.database.sqlite.SQLiteDatabase
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.util.Base64
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import io.socket.client.IO
 import kotlinx.android.synthetic.main.activity_card__change.*
 import org.json.JSONArray
@@ -19,17 +20,20 @@ class Card_ChangeActivity : AppCompatActivity() {
 
     var socket : io.socket.client.Socket? = null
     var URL = "http://192.168.0.13:3000"
-    //var URL = "http://172.30.23.27:3000"
-
+//    var URL = "http://172.30.11.107:3000"
     ///自分の名刺
     var myCardVisit : CardVisit? = null
 
     ///近くに居るユーザ情報リスト
     var list_cardvist : ArrayList<CardVisit>? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_card__change)
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
 
 //        Log.d("GPS", "change display")
 //        // 位置情報使用時に準備
@@ -74,7 +78,6 @@ class Card_ChangeActivity : AppCompatActivity() {
 //                )
 //            }
 //        }
-
 
 
 
